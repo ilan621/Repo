@@ -1,0 +1,21 @@
+name: Build Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install tools
+      run: sudo apt install -y dpkg-dev
+
+    - name: Generate Packages
+      run: |
+        dpkg-scanpackages debs /dev/null > Packages
+        bzip2 -kf Packages
