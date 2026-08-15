@@ -1,0 +1,32 @@
+Package: com.25mao.leftpan.rootless
+Version: 2.0
+Architecture: iphoneos-arm64e
+Maintainer: admin@25mao.com
+Pre-Depends: rootless-compat(>= 0.9)
+Depends: mobilesubstrate, preferenceloader, com.opa334.altlist (>=1.0.4)
+Filename: debs/com.25mao.leftpan.rootless_2.0_iphoneos-arm64e.deb
+Size: 40572
+MD5sum: fab1d24c5a7ef8d550ec01faaafa9172
+SHA1: 6bba75f17e491e3f1be665b9c750953dd86dd123
+SHA256: bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc
+Section: Rootless
+Priority: optional
+Description: 左滑返回上一页面
+Author: Mao
+Name: 左滑返回-Rootless
+
+Package: com.tencent.themebox
+Version: 3.0.3
+Architecture: iphoneos-arm64e
+Maintainer: admin@25mao.com
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: debs/主题盒子3.0.3_roothide（隐根）.deb
+Size: 9172256
+MD5sum: c091b420e5012eb188846ad761808efa
+SHA1: fc45173e335902a69828b777a8b124c2ca880875
+SHA256: a317aa75017c0f02b9c4bd27be2cb8eff765f3955692854c6a9c0ec1a437ff9f
+Section: Tweaks
+Description: 微信主题盒子
+Author: Mao
+Name: 主题盒子
+
