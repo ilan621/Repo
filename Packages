@@ -1,17 +1,13 @@
 Package: com.25mao.leftpan.rootless
+Name: 左滑返回-Rootless
 Version: 2.0
 Architecture: iphoneos-arm64e
+Description: 左滑返回上一页面
 Maintainer: admin@25mao.com
-Pre-Depends: rootless-compat(>= 0.9)
+Author: Mao
+Section: Rootless
 Depends: mobilesubstrate, preferenceloader, com.opa334.altlist (>=1.0.4)
 Filename: debs/com.25mao.leftpan.rootless_2.0_iphoneos-arm64e.deb
 Size: 40572
-MD5sum: fab1d24c5a7ef8d550ec01faaafa9172
-SHA1: 6bba75f17e491e3f1be665b9c750953dd86dd123
 SHA256: bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc
-Section: Rootless
-Priority: optional
-Description: 左滑返回上一页面
-Author: Mao
-Name: 左滑返回-Rootless
 
