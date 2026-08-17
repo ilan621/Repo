@@ -1,0 +1,19 @@
+{
+  "source": {
+    "name": "ilan",
+    "description": "ilan RootHide 插件源",
+    "website": "https://ilan621.github.io/Repo/"
+  },
+  "packages": [
+    {
+      "package": "com.iosdump.appdata",
+      "name": "AppData",
+      "version": "2.6.9",
+      "author": "iosdump",
+      "description": "在主屏幕查看应用数据与管理应用",
+      "architecture": "iphoneos-arm64",
+      "filename": "debs/com.iosdump.appdata_2.6.9_iphoneos-arm64.deb",
+      "icon": ""
+    }
+  ]
+}
