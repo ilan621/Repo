@@ -12,5 +12,20 @@
     "Filename": "debs/com.25mao.leftpan.rootless_2.0_iphoneos-arm64e.deb",
     "Size": "40572",
     "SHA256": "bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc"
+  },
+  {
+    "Package": "com.iosdump.appdata",
+    "Name": "AppData",
+    "Version": "2.6.9",
+    "Architecture": "iphoneos-arm64",
+    "Description": "在主屏幕查看应用数据与管理应用",
+    "Maintainer": "iosdump",
+    "Author": "iosdump",
+    "Section": "Tweaks",
+    "Depends": "firmware (>= 11.0), mobilesubstrate, preferenceloader",
+    "Conflicts": "com.netskao.appdatas, com.netskao.appdata, cn.zqbb.appdata, com.fouadraheb.appdata",
+    "Filename": "debs/com.iosdump.appdata_2.6.9_iphoneos-arm64.deb",
+    "Size": "2077012",
+    "SHA256": "06314a02cd6a04fa7c1f24d3b7a8a0c1154c6834795971741e42fc669e8e27cb"
   }
 ]
