@@ -4,194 +4,195 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta name="theme-color" content="#111827">
-<title>ilan RootHide 插件源管理器</title>
+
+<title>ilan RootHide 源管理器</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+"PingFang SC","Helvetica Neue",Arial,sans-serif;
+background:#f3f4f6;
+color:#111827
 }
 
-body {
-    margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"SF Pro Display",
-                 "PingFang SC","Helvetica Neue",Arial,sans-serif;
-    background: #f3f4f6;
-    color: #111827;
+.header{
+background:linear-gradient(135deg,#111827,#374151);
+color:white;
+padding:28px 18px 25px
 }
 
-.header {
-    background: linear-gradient(135deg,#111827,#374151);
-    color: white;
-    padding: 28px 18px 24px;
+.header h1{
+margin:0;
+font-size:27px
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 26px;
+.header p{
+margin:7px 0 0;
+font-size:13px;
+opacity:.72
 }
 
-.header p {
-    margin: 7px 0 0;
-    opacity: .75;
-    font-size: 14px;
+.container{
+max-width:900px;
+margin:auto;
+padding:16px
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 16px;
+.card{
+background:white;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 5px 20px rgba(0,0,0,.06)
 }
 
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+h2{
+font-size:18px;
+margin:0 0 15px
 }
 
-.card h2 {
-    margin: 0 0 15px;
-    font-size: 18px;
+label{
+display:block;
+font-size:13px;
+font-weight:600;
+color:#4b5563;
+margin:13px 0 6px
 }
 
-label {
-    display: block;
-    margin: 13px 0 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #4b5563;
+input,textarea{
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:12px;
+font-size:15px;
+background:white;
+outline:none
 }
 
-input,
-textarea,
-select {
-    width: 100%;
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-    padding: 12px;
-    font-size: 15px;
-    background: #fff;
-    outline: none;
+textarea{
+min-height:85px;
+resize:vertical
 }
 
-textarea {
-    min-height: 90px;
-    resize: vertical;
+input:focus,textarea:focus{
+border-color:#111827
 }
 
-input:focus,
-textarea:focus {
-    border-color: #111827;
+.upload{
+border:2px dashed #cbd5e1;
+border-radius:16px;
+padding:25px 15px;
+text-align:center;
+background:#f8fafc
 }
 
-.upload {
-    border: 2px dashed #cbd5e1;
-    border-radius: 16px;
-    padding: 28px 15px;
-    text-align: center;
-    background: #f8fafc;
+.upload strong{
+display:block;
+font-size:17px;
+margin-bottom:6px
 }
 
-.upload strong {
-    display: block;
-    font-size: 17px;
-    margin-bottom: 7px;
+.upload span{
+font-size:13px;
+color:#64748b
 }
 
-.upload span {
-    font-size: 13px;
-    color: #64748b;
+.btn{
+border:0;
+border-radius:12px;
+padding:13px 17px;
+font-size:15px;
+font-weight:600;
+margin-top:12px;
+cursor:pointer
 }
 
-input[type=file] {
-    margin-top: 15px;
+.primary{
+background:#111827;
+color:white;
+width:100%
 }
 
-.btn {
-    border: 0;
-    border-radius: 12px;
-    padding: 13px 17px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 12px;
+.secondary{
+background:#e5e7eb;
+color:#111827
 }
 
-.btn-primary {
-    background: #111827;
-    color: white;
-    width: 100%;
+.danger{
+background:#fee2e2;
+color:#991b1b
 }
 
-.btn-secondary {
-    background: #e5e7eb;
-    color: #111827;
+.plugin{
+border:1px solid #e5e7eb;
+border-radius:15px;
+padding:15px;
+margin-top:12px;
+background:#fafafa
 }
 
-.btn-danger {
-    background: #fee2e2;
-    color: #991b1b;
+.plugin-title{
+font-size:17px;
+font-weight:700
 }
 
-.plugin {
-    border: 1px solid #e5e7eb;
-    border-radius: 15px;
-    padding: 14px;
-    margin-top: 12px;
-    background: #fafafa;
+.small{
+font-size:12px;
+color:#6b7280;
+margin-top:5px
 }
 
-.plugin-title {
-    font-weight: 700;
-    font-size: 16px;
+.status{
+display:none;
+padding:13px;
+border-radius:12px;
+margin-top:12px;
+font-size:14px;
+line-height:1.6
 }
 
-.plugin-info {
-    font-size: 13px;
-    color: #6b7280;
-    margin-top: 5px;
-    line-height: 1.6;
+.success{
+display:block;
+background:#dcfce7;
+color:#166534
 }
 
-.plugin img {
-    width: 55px;
-    height: 55px;
-    object-fit: cover;
-    border-radius: 13px;
-    float: left;
-    margin-right: 12px;
+.error{
+display:block;
+background:#fee2e2;
+color:#991b1b
 }
 
-.clear {
-    clear: both;
+.warning{
+display:block;
+background:#fef3c7;
+color:#92400e
 }
 
-.status {
-    display: none;
-    padding: 13px;
-    border-radius: 12px;
-    margin-top: 12px;
-    font-size: 14px;
+.progress{
+margin-top:15px;
+height:8px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+display:none
 }
 
-.success {
-    display: block;
-    background: #dcfce7;
-    color: #166534;
+.progress-bar{
+height:100%;
+width:0%;
+background:#111827;
+transition:.2s
 }
 
-.warning {
-    display: block;
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.footer {
-    text-align: center;
-    padding: 30px 10px;
-    color: #9ca3af;
-    font-size: 12px;
+.footer{
+text-align:center;
+padding:25px 10px;
+font-size:12px;
+color:#9ca3af
 }
 </style>
 </head>
@@ -199,453 +200,731 @@ input[type=file] {
 <body>
 
 <header class="header">
-    <h1>ilan RootHide 源管理器</h1>
-    <p>手机端插件批量管理 · 插件信息编辑 · 源文件生成</p>
+<h1>ilan RootHide 源管理器</h1>
+<p>手机批量上传 · 自动管理插件 · GitHub 自动更新源</p>
 </header>
 
 <main class="container">
 
-    <!-- 上传插件 -->
-    <section class="card">
-        <h2>📦 批量添加插件</h2>
+<section class="card">
 
-        <div class="upload">
-            <strong>选择 .deb 插件</strong>
-            <span>可以一次选择多个插件</span>
-            <input
-                id="debFiles"
-                type="file"
-                accept=".deb"
-                multiple
-            >
-        </div>
+<h2>🔐 GitHub 设置</h2>
 
-        <div id="pluginList"></div>
-    </section>
+<label>GitHub 用户名</label>
+<input id="owner" value="ilan621">
 
-    <!-- 默认信息 -->
-    <section class="card">
-        <h2>⚙️ 源信息</h2>
+<label>仓库名称</label>
+<input id="repo" value="Repo">
 
-        <label>源名称</label>
-        <input id="repoName" value="ilan RootHide 源">
+<label>GitHub Token</label>
+<input
+id="token"
+type="password"
+placeholder="粘贴你的 Fine-grained Token"
+>
 
-        <label>源地址</label>
-        <input id="repoUrl" value="https://ilan621.github.io/Repo/">
+<div class="small">
+Token 只保存在当前网页，不会写入插件源文件。
+</div>
 
-        <label>作者</label>
-        <input id="repoAuthor" value="ilan">
+</section>
 
-        <label>源描述</label>
-        <textarea id="repoDescription">ilan RootHide 插件源</textarea>
-    </section>
 
-    <!-- 操作 -->
-    <section class="card">
-        <h2>🚀 操作</h2>
+<section class="card">
 
-        <button class="btn btn-primary" onclick="generateSource()">
-            生成插件源文件
-        </button>
+<h2>📦 批量添加插件</h2>
 
-        <button class="btn btn-secondary" onclick="downloadInfo()">
-            导出插件信息 JSON
-        </button>
+<div class="upload">
 
-        <button class="btn btn-danger" onclick="clearAll()">
-            清空全部
-        </button>
+<strong>选择 .deb 文件</strong>
 
-        <div id="status" class="status"></div>
-    </section>
+<span>
+可以一次选择多个插件
+</span>
 
-    <!-- 预览 -->
-    <section class="card">
-        <h2>👀 插件预览</h2>
-        <div id="preview">
-            <p style="color:#9ca3af">
-                还没有添加插件
-            </p>
-        </div>
-    </section>
+<input
+id="debFiles"
+type="file"
+accept=".deb"
+multiple
+>
+
+</div>
+
+<div id="plugins"></div>
+
+</section>
+
+
+<section class="card">
+
+<h2>🖼️ 批量添加图标</h2>
+
+<div class="upload">
+
+<strong>选择 PNG / JPG 图标</strong>
+
+<span>
+文件名建议与插件名称对应
+</span>
+
+<input
+id="iconFiles"
+type="file"
+accept="image/png,image/jpeg"
+multiple
+>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<h2>🚀 上传到 GitHub</h2>
+
+<button
+class="btn primary"
+onclick="uploadAll()"
+>
+开始上传插件
+</button>
+
+<div class="progress" id="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div id="status" class="status"></div>
+
+</section>
+
+
+<section class="card">
+
+<h2>👀 插件列表</h2>
+
+<div id="preview">
+<div class="small">还没有添加插件</div>
+</div>
+
+</section>
 
 </main>
 
 <footer class="footer">
-    ilan RootHide Repository Manager
+ilan RootHide Repository
 </footer>
+
 
 <script>
 
-let plugins = [];
+let plugins=[];
+let icons=[];
 
-/* 选择 DEB */
-document.getElementById("debFiles").addEventListener("change", function(e) {
 
-    const files = Array.from(e.target.files);
+/* =========================
+   选择 DEB
+========================= */
 
-    files.forEach(file => {
+document.getElementById("debFiles")
+.addEventListener("change",async function(e){
 
-        const name = file.name
-            .replace(/\.deb$/i,"")
-            .replace(/[_-]/g," ");
+plugins=[];
 
-        plugins.push({
-            file: file,
-            fileName: file.name,
-            name: name,
-            package: name.toLowerCase()
-                .replace(/[^a-z0-9]+/g,"."),
-            version: "1.0.0",
-            author: "ilan",
-            description: name,
-            architecture: "iphoneos-arm64",
-            section: "Tweaks",
-            icon: ""
-        });
+for(const file of e.target.files){
 
-    });
+const info=await readDeb(file);
 
-    renderPlugins();
-    renderPreview();
+plugins.push({
+file:file,
+fileName:file.name,
+name:info.name || file.name.replace(/\.deb$/i,""),
+package:info.package || "",
+version:info.version || "1.0.0",
+architecture:info.architecture || "iphoneos-arm64",
+author:info.author || "ilan",
+description:info.description || "",
+icon:null
+});
 
-    e.target.value = "";
+}
+
+renderPlugins();
+renderPreview();
+
 });
 
 
-/* 显示插件编辑器 */
-function renderPlugins() {
+/* =========================
+   读取 DEB
+========================= */
 
-    const box = document.getElementById("pluginList");
+async function readDeb(file){
 
-    box.innerHTML = "";
+/*
+  纯浏览器无法可靠解析所有 DEB。
+  因此这里先根据文件名生成基础信息。
+  上传后 GitHub Actions 再从 DEBIAN/control
+  获取准确 Package / Version / Architecture。
+*/
 
-    plugins.forEach((p,index) => {
+let name=file.name
+.replace(/\.deb$/i,"")
+.replace(/[_-]/g," ");
 
-        const div = document.createElement("div");
+return{
 
-        div.className = "plugin";
+name:name,
+package:"",
+version:"1.0.0",
+architecture:"iphoneos-arm64",
+author:"ilan",
+description:name
 
-        div.innerHTML = `
-            <div class="plugin-title">
-                ${escapeHtml(p.fileName)}
-            </div>
+};
 
-            <label>插件名称</label>
-            <input
-                value="${escapeHtml(p.name)}"
-                onchange="updatePlugin(${index},'name',this.value)"
-            >
-
-            <label>Package ID</label>
-            <input
-                value="${escapeHtml(p.package)}"
-                onchange="updatePlugin(${index},'package',this.value)"
-            >
-
-            <label>版本</label>
-            <input
-                value="${escapeHtml(p.version)}"
-                onchange="updatePlugin(${index},'version',this.value)"
-            >
-
-            <label>作者</label>
-            <input
-                value="${escapeHtml(p.author)}"
-                onchange="updatePlugin(${index},'author',this.value)"
-            >
-
-            <label>中文描述</label>
-            <textarea
-                onchange="updatePlugin(${index},'description',this.value)"
-            >${escapeHtml(p.description)}</textarea>
-
-            <label>图标 PNG</label>
-            <input
-                type="file"
-                accept="image/png,image/jpeg"
-                onchange="loadIcon(${index},this)"
-            >
-
-            <button
-                class="btn btn-danger"
-                onclick="removePlugin(${index})"
-            >
-                删除插件
-            </button>
-
-            <div class="clear"></div>
-        `;
-
-        box.appendChild(div);
-    });
 }
 
 
-/* 修改插件 */
-function updatePlugin(index,key,value) {
+/* =========================
+   图标
+========================= */
 
-    plugins[index][key] = value;
+document.getElementById("iconFiles")
+.addEventListener("change",function(e){
 
-    renderPreview();
+icons=Array.from(e.target.files);
+
+showStatus(
+"已选择 "+icons.length+" 个图标",
+"success"
+);
+
+});
+
+
+/* =========================
+   插件编辑器
+========================= */
+
+function renderPlugins(){
+
+const box=document.getElementById("plugins");
+
+box.innerHTML="";
+
+plugins.forEach((p,i)=>{
+
+const div=document.createElement("div");
+
+div.className="plugin";
+
+div.innerHTML=`
+
+<div class="plugin-title">
+${escapeHtml(p.fileName)}
+</div>
+
+<label>插件名称</label>
+
+<input
+value="${escapeHtml(p.name)}"
+onchange="update(${i},'name',this.value)"
+>
+
+<label>Package ID</label>
+
+<input
+placeholder="例如 com.ilan.example"
+value="${escapeHtml(p.package)}"
+onchange="update(${i},'package',this.value)"
+>
+
+<label>版本</label>
+
+<input
+value="${escapeHtml(p.version)}"
+onchange="update(${i},'version',this.value)"
+>
+
+<label>作者</label>
+
+<input
+value="${escapeHtml(p.author)}"
+onchange="update(${i},'author',this.value)"
+>
+
+<label>中文描述</label>
+
+<textarea
+onchange="update(${i},'description',this.value)"
+>${escapeHtml(p.description)}</textarea>
+
+<button
+class="btn danger"
+onclick="removePlugin(${i})"
+>
+删除
+</button>
+
+`;
+
+box.appendChild(div);
+
+});
+
 }
 
 
-/* 加载图标 */
-function loadIcon(index,input) {
+/* =========================
+   修改
+========================= */
 
-    const file = input.files[0];
+function update(index,key,value){
 
-    if (!file) return;
+plugins[index][key]=value;
 
-    const reader = new FileReader();
+renderPreview();
 
-    reader.onload = function(e) {
-
-        plugins[index].icon = e.target.result;
-
-        renderPreview();
-    };
-
-    reader.readAsDataURL(file);
 }
 
 
-/* 删除 */
-function removePlugin(index) {
+/* =========================
+   删除
+========================= */
 
-    plugins.splice(index,1);
+function removePlugin(index){
 
-    renderPlugins();
-    renderPreview();
-}
+plugins.splice(index,1);
 
-
-/* 预览 */
-function renderPreview() {
-
-    const box = document.getElementById("preview");
-
-    if (!plugins.length) {
-
-        box.innerHTML =
-            `<p style="color:#9ca3af">还没有添加插件</p>`;
-
-        return;
-    }
-
-    box.innerHTML = "";
-
-    plugins.forEach(p => {
-
-        const div = document.createElement("div");
-
-        div.className = "plugin";
-
-        let icon = "";
-
-        if (p.icon) {
-
-            icon = `
-                <img src="${p.icon}">
-            `;
-        }
-
-        div.innerHTML = `
-            ${icon}
-
-            <div class="plugin-title">
-                ${escapeHtml(p.name)}
-            </div>
-
-            <div class="plugin-info">
-                ${escapeHtml(p.description)}<br>
-                版本：${escapeHtml(p.version)}<br>
-                作者：${escapeHtml(p.author)}<br>
-                ID：${escapeHtml(p.package)}
-            </div>
-
-            <div class="clear"></div>
-        `;
-
-        box.appendChild(div);
-    });
-}
-
-
-/* 生成插件源信息 */
-function generateSource() {
-
-    if (!plugins.length) {
-
-        showStatus(
-            "请先选择至少一个 .deb 插件",
-            "warning"
-        );
-
-        return;
-    }
-
-    const data = {
-
-        repository: {
-
-            name: document.getElementById("repoName").value,
-
-            url: document.getElementById("repoUrl").value,
-
-            author: document.getElementById("repoAuthor").value,
-
-            description:
-                document.getElementById("repoDescription").value
-        },
-
-        plugins: plugins.map(p => ({
-
-            name: p.name,
-
-            package: p.package,
-
-            version: p.version,
-
-            author: p.author,
-
-            description: p.description,
-
-            architecture: p.architecture,
-
-            section: p.section,
-
-            file: p.fileName,
-
-            icon: p.icon ? true : false
-
-        }))
-    };
-
-    downloadFile(
-        "plugins.json",
-        JSON.stringify(data,null,2),
-        "application/json"
-    );
-
-    showStatus(
-        "插件信息已经生成。下一步接入 GitHub Actions 后，就可以自动上传并生成 Packages。",
-        "success"
-    );
-}
-
-
-/* 导出 JSON */
-function downloadInfo() {
-
-    if (!plugins.length) {
-
-        showStatus(
-            "当前没有插件信息",
-            "warning"
-        );
-
-        return;
-    }
-
-    const data = plugins.map(p => ({
-
-        name: p.name,
-
-        package: p.package,
-
-        version: p.version,
-
-        author: p.author,
-
-        description: p.description,
-
-        file: p.fileName
-
-    }));
-
-    downloadFile(
-        "plugins.json",
-        JSON.stringify(data,null,2),
-        "application/json"
-    );
-}
-
-
-/* 下载文件 */
-function downloadFile(name,data,type) {
-
-    const blob = new Blob(
-        [data],
-        {type:type}
-    );
-
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-
-    a.href = url;
-
-    a.download = name;
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    URL.revokeObjectURL(url);
-}
-
-
-/* 清空 */
-function clearAll() {
-
-    if (!confirm("确定要清空全部插件吗？")) {
-        return;
-    }
-
-    plugins = [];
-
-    renderPlugins();
-
-    renderPreview();
-
-    showStatus(
-        "已经清空",
-        "success"
-    );
-}
-
-
-/* 提示 */
-function showStatus(text,type) {
-
-    const box = document.getElementById("status");
-
-    box.className =
-        "status " + type;
-
-    box.textContent = text;
-}
-
-
-/* 防止 HTML 注入 */
-function escapeHtml(text) {
-
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-/* 初始化 */
 renderPlugins();
 renderPreview();
+
+}
+
+
+/* =========================
+   预览
+========================= */
+
+function renderPreview(){
+
+const box=document.getElementById("preview");
+
+if(!plugins.length){
+
+box.innerHTML=
+'<div class="small">还没有添加插件</div>';
+
+return;
+
+}
+
+box.innerHTML="";
+
+plugins.forEach(p=>{
+
+const div=document.createElement("div");
+
+div.className="plugin";
+
+div.innerHTML=`
+
+<div class="plugin-title">
+${escapeHtml(p.name)}
+</div>
+
+<div class="small">
+版本：${escapeHtml(p.version)}
+<br>
+作者：${escapeHtml(p.author)}
+<br>
+Package：
+${escapeHtml(p.package || "上传后自动读取")}
+<br>
+描述：
+${escapeHtml(p.description)}
+</div>
+
+`;
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* =========================
+   上传全部
+========================= */
+
+async function uploadAll(){
+
+const owner=
+document.getElementById("owner").value.trim();
+
+const repo=
+document.getElementById("repo").value.trim();
+
+const token=
+document.getElementById("token").value.trim();
+
+
+if(!owner || !repo || !token){
+
+showStatus(
+"请填写 GitHub 用户名、仓库名称和 Token。",
+"error"
+);
+
+return;
+
+}
+
+
+if(!plugins.length){
+
+showStatus(
+"请先选择至少一个 .deb 插件。",
+"warning"
+);
+
+return;
+
+}
+
+
+document.getElementById("progress").style.display="block";
+
+setProgress(0);
+
+
+try{
+
+for(let i=0;i<plugins.length;i++){
+
+const p=plugins[i];
+
+await uploadFile(
+owner,
+repo,
+token,
+"debs/"+p.fileName,
+p.file
+);
+
+setProgress(
+Math.round(
+((i+1)/plugins.length)*100
+)
+);
+
+}
+
+
+/* 保存插件元数据 */
+
+const metadata=plugins.map(p=>({
+
+name:p.name,
+
+package:p.package,
+
+version:p.version,
+
+architecture:p.architecture,
+
+author:p.author,
+
+description:p.description,
+
+file:p.fileName
+
+}));
+
+
+await uploadText(
+owner,
+repo,
+token,
+"metadata/plugins.json",
+JSON.stringify(
+metadata,
+null,
+2
+)
+);
+
+
+showStatus(
+"🎉 上传完成！GitHub Actions 接下来会自动生成 Packages。",
+"success"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+showStatus(
+"上传失败："+error.message,
+"error"
+);
+
+}
+
+}
+
+
+/* =========================
+   上传文件到 GitHub
+========================= */
+
+async function uploadFile(
+owner,
+repo,
+token,
+path,
+file
+){
+
+const buffer=
+await file.arrayBuffer();
+
+const bytes=
+new Uint8Array(buffer);
+
+const base64=
+uint8ToBase64(bytes);
+
+
+return githubPut(
+owner,
+repo,
+token,
+path,
+base64,
+"Add plugin "+file.name
+);
+
+}
+
+
+/* =========================
+   上传文本
+========================= */
+
+async function uploadText(
+owner,
+repo,
+token,
+path,
+text
+){
+
+const bytes=
+new TextEncoder().encode(text);
+
+const base64=
+uint8ToBase64(bytes);
+
+return githubPut(
+owner,
+repo,
+token,
+path,
+base64,
+"Update plugin metadata"
+);
+
+}
+
+
+/* =========================
+   GitHub API
+========================= */
+
+async function githubPut(
+owner,
+repo,
+token,
+path,
+content,
+message
+){
+
+const url=
+`https://api.github.com/repos/`+
+`${encodeURIComponent(owner)}/`+
+`${encodeURIComponent(repo)}/contents/`+
+path.split("/")
+.map(encodeURIComponent)
+.join("/");
+
+
+/*
+  如果文件已经存在，先取得 SHA。
+*/
+
+let sha=null;
+
+const getResponse=
+await fetch(url,{
+
+headers:{
+"Authorization":
+"Bearer "+token,
+
+"Accept":
+"application/vnd.github+json"
+}
+
+});
+
+
+if(getResponse.ok){
+
+const old=
+await getResponse.json();
+
+sha=old.sha;
+
+}
+
+
+const body={
+message:message,
+content:content
+};
+
+if(sha){
+
+body.sha=sha;
+
+}
+
+
+const response=
+await fetch(url,{
+
+method:"PUT",
+
+headers:{
+
+"Authorization":
+"Bearer "+token,
+
+"Accept":
+"application/vnd.github+json",
+
+"Content-Type":
+"application/json"
+
+},
+
+body:JSON.stringify(body)
+
+});
+
+
+if(!response.ok){
+
+const text=
+await response.text();
+
+throw new Error(
+response.status+" "+text
+);
+
+}
+
+
+return response.json();
+
+}
+
+
+/* =========================
+   Base64
+========================= */
+
+function uint8ToBase64(bytes){
+
+let binary="";
+
+const chunk=0x8000;
+
+for(
+let i=0;
+i<bytes.length;
+i+=chunk
+){
+
+binary+=String.fromCharCode(
+...bytes.subarray(
+i,
+Math.min(i+chunk,bytes.length)
+)
+);
+
+}
+
+return btoa(binary);
+
+}
+
+
+/* =========================
+   进度
+========================= */
+
+function setProgress(value){
+
+document.getElementById(
+"progressBar"
+).style.width=value+"%";
+
+}
+
+
+/* =========================
+   提示
+========================= */
+
+function showStatus(text,type){
+
+const box=
+document.getElementById("status");
+
+box.className=
+"status "+type;
+
+box.textContent=text;
+
+}
+
+
+/* =========================
+   HTML 安全
+========================= */
+
+function escapeHtml(text){
+
+return String(text)
+
+.replace(/&/g,"&amp;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/'/g,"&#039;");
+
+}
 
 </script>
 
