@@ -6,6 +6,7 @@ on:
       - "debs/**"
       - "icons/**"
       - "metadata/**"
+      - "packages.json"
       - "generate_packages.py"
       - ".github/workflows/update-packages.yml"
 
@@ -16,6 +17,7 @@ permissions:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -34,14 +36,28 @@ jobs:
 
       - name: Commit generated files
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add Packages Packages.bz2 Packages.gz Packages.json
+          git config user.name "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            Packages \
+            Packages.gz \
+            Packages.bz2 \
+            Packages.json \
+            Release
 
           if git diff --cached --quiet; then
+
             echo "No changes to commit."
+
           else
-            git commit -m "Auto update RootHide Packages"
+
+            git commit \
+              -m "Auto update RootHide Packages"
+
             git push
+
           fi
