@@ -1,8 +1,18 @@
 Origin: ilan
-Label: ilan RootHide Repo
+Label: ilan
 Suite: stable
-Version: 1.0
-Codename: ios
+Codename: stable
 Architectures: iphoneos-arm64 iphoneos-arm64e
 Components: main
-Description: ilan RootHide jailbreak repository
+Description: ilan RootHide Repository
+Date: Mon, 17 Aug 2026 19:13:43 GMT
+
+MD5Sum:
+ d31074f931ae09141cde216743c924c2 931 Packages
+ e17520a07632ca0abdd09a6367d40ede 565 Packages.gz
+ 11cad0adf1a91ee71875d08fd0ed605e 637 Packages.bz2
+
+SHA256:
+ 1f6e25a0b3a227c49cf536b65b1fa1b279292dec12c8e9a1d88d8b04186965e7 931 Packages
+ 87307d71cd1fb1c7722656fa960144eb9fd6ed08657c06fd15389547965b1657 565 Packages.gz
+ 7d0ba09f15b009c405d48b8822aad6083a545007d3b7cbe5fe18f228bf450808 637 Packages.bz2
