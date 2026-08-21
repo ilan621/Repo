@@ -159,3 +159,18 @@ Filename: debs/com.squidforce.squidextender_3.7.4_iphoneos-arm64e.deb
 Size: 6935890
 SHA256: ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac
 
+Package: aweme.x
+Name: 抖音图层
+Version: 2.6.2
+Architecture: iphoneos-arm64e
+Description: 自用
+Maintainer: 𝙓
+Author: 𝙓
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Conflicts: com.xx.dyhook
+Installed-Size: 11908
+Filename: debs/抖音图层_2.6.2.deb
+Size: 10026260
+SHA256: 5f0c797ecebff9752e03839eefcf13018a32ec617b9251236023c390b80f548f
+
