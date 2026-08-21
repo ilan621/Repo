@@ -58,6 +58,19 @@ Filename: debs/com.axs.floating-view_1.6.0-6_iphoneos-arm64e.deb
 Size: 1774688
 SHA256: 919d760dcca7949a4821e70ea141e34303efb4372ec2335880c17a1d3f17a1bf
 
+Package: com.gtok
+Name: GTok
+Version: 1.7
+Architecture: iphoneos-arm64e
+Description: GTok for TikTok by t.me/g_tweaks
+Maintainer: g_tweaks
+Author: g_tweaks
+Section: Tweaks
+Depends: firmware (>= 14.0), mobilesubstrate | substitute | libhooker | ellekit
+Filename: debs/com.gtok_1.7_iphoneos-arm64e.deb
+Size: 1712722
+SHA256: 9f5f4c637f190dd2f569fb6c817b804eb947cb909be7a02afceb06194544d36f
+
 Package: com.iosdump.appdata
 Name: AppData
 Version: 2.6.9
