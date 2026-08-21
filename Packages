@@ -112,6 +112,19 @@ Filename: debs/com.gtok_1.7_iphoneos-arm64e.deb
 Size: 1712722
 SHA256: 9f5f4c637f190dd2f569fb6c817b804eb947cb909be7a02afceb06194544d36f
 
+Package: com.huami.WCPulse
+Name: WCPulse
+Version: 1.6-7
+Architecture: iphoneos-arm64e
+Description: WCPulse
+Maintainer: huami
+Author: huami
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: debs/WCPulse_1.6-7-arm64e.deb
+Size: 6107278
+SHA256: 5073ef47b1e5266c24890f57b97bf3e86d311617977c08cdbbbd406a014e4fe1
+
 Package: com.iosdump.appdata
 Name: AppData
 Version: 2.6.9
