@@ -268,6 +268,21 @@
     "SHA256": "ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac"
   },
   {
+    "Package": "com.wkk.keyboardx",
+    "Name": "KeyboardX",
+    "Version": "1.0-6",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "键盘调整。",
+    "Maintainer": "wkk",
+    "Author": "wkk",
+    "Section": "Tweaks",
+    "Depends": "mobilesubstrate (>= 0.9.5000), preferenceloader",
+    "Installed-Size": "500",
+    "Filename": "debs/com.wkk.keyboardx_1.0-6_iphoneos-arm64e.deb",
+    "Size": "62204",
+    "SHA256": "03ed401ae51f042ae8278eeb57cfda9fd95fac20ede4dd63b6fe5c103d9581ef"
+  },
+  {
     "Package": "com.wkk.wechatx",
     "Name": "WeChatX",
     "Version": "2.1-5",
