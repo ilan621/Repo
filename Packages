@@ -173,6 +173,20 @@ Filename: debs/com.wkk.wechatx_2.1-4_iphoneos-arm64e.deb
 Size: 3933094
 SHA256: 474e64ef0c3b03e1634408817d018076f28b5b9723a60f5d72fecd75c45bc4ce
 
+Package: con.twigalaxy
+Name: TWIGalaxy
+Version: 1.1.4
+Architecture: iphoneos-arm64e
+Description: 1
+Maintainer: DeNsot
+Author: DeNsot
+Section: Tweaks
+Conflicts: con.twigalaxy
+Provides: con.twigalaxy
+Filename: debs/con.twigalaxy_1.1.4_iphoneos-arm64e.deb
+Size: 435868
+SHA256: d7a62e8322c84334b07365b9bf8505fca4ae271167b8c99c01b9ba64baa4af75
+
 Package: cn.llld.biaoji
 Name: 截图标记-rootless
 Version: 1.6
