@@ -27,5 +27,21 @@
     "Filename": "debs/com.25mao.leftpan.rootless_2.0_iphoneos-arm64e.deb",
     "Size": "40572",
     "SHA256": "bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc"
+  },
+  {
+    "Package": "com.iosdump.shellx",
+    "Name": "SHELLX",
+    "Version": "2.1.1",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱",
+    "Maintainer": "iosdump",
+    "Author": "iosdump",
+    "Section": "Tweaks",
+    "Depends": "mobilesubstrate, preferenceloader",
+    "Conflicts": "com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33",
+    "Installed-Size": "2788",
+    "Filename": "debs/com.iosdump.shellx_2.1.1_iphoneos-arm64e.deb",
+    "Size": "885052",
+    "SHA256": "19205c5f99a34d053ff86ae0c471b6eff451168d646c102f716f9750ffdf8dcc"
   }
 ]
