@@ -186,17 +186,17 @@ SHA256: 86ebcf103a34acaddb2aa80c1c0888e13f43aa3b008e1abeedf2e10387b02c08
 
 Package: com.netskao.wechatextension
 Name: 微信扩展
-Version: 1.1-2~48
+Version: 1.1-2~50
 Architecture: iphoneos-arm64e
 Description: 微信扩展, 仅支持8.0.56及以上版本, 设置位于微信-设置
 Maintainer: Nets
 Author: Netskao
 Section: Netskao-Tweaks
 Depends: mobilesubstrate, firmware (>= 15.0)
-Installed-Size: 56748
-Filename: debs/com.netskao.wechatextension_1.1-2~48_iphoneos-arm64e.deb
-Size: 41142808
-SHA256: f2857b0ae25c804a1168fb2103946f6b4cc850251d24bdae3f103eee8257f562
+Installed-Size: 56952
+Filename: debs/com.netskao.wechatextension_1.1-2~50_iphoneos-arm64e.deb
+Size: 41543126
+SHA256: 4718673da6f5cbd5d541275641161b4c8769eb6bc5a02e6bc4687997ce2742b9
 
 Package: com.opa334.crane
 Name: Crane
