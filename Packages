@@ -26,6 +26,19 @@ Filename: debs/cn.llld.snapshottool_4.4_iphoneos-arm64e.deb
 Size: 524694
 SHA256: 79ff4e191639ea89ee045d003bd176c6c74b10b184a478d79cf86ad198ac6ba7
 
+Package: com.25mao.BubbleBox
+Name: 气泡盒子
+Version: 1.0-7
+Architecture: iphoneos-arm64e
+Description: 微信气泡插件
+Maintainer: admin@25mao.com
+Author: Mao
+Section: 微信插件
+Depends: firmware (>= 5.0), mobilesubstrate
+Filename: debs/com.25mao.bubblebox_1.0-7_iphoneos-arm64e.deb
+Size: 4879196
+SHA256: f9823783fcb19a45e0429793fba075f8609bdb665e620296743106324f58df2d
+
 Package: com.25mao.leftpan.rootless
 Name: 左滑返回-Rootless
 Version: 2.0
