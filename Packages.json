@@ -163,6 +163,21 @@
     "SHA256": "07f9338e6ac9a9e11566bb04d5805ffb84459c30ef4e10bbf5ac482475c2dc86"
   },
   {
+    "Package": "com.netskao.storeswitchaccounts",
+    "Name": "StoreSwitchAccounts",
+    "Version": "1.1-4",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "Conveniently switch between logged-in accounts, long press the desktop AppStore icon to switch",
+    "Maintainer": "Nets",
+    "Author": "Netskao",
+    "Section": "Netskao-Tweaks",
+    "Depends": "firmware (>= 15.0), mobilesubstrate",
+    "Installed-Size": "460",
+    "Filename": "debs/com.netskao.storeswitchaccounts_1.1-4_iphoneos-arm64e.deb",
+    "Size": "137600",
+    "SHA256": "86ebcf103a34acaddb2aa80c1c0888e13f43aa3b008e1abeedf2e10387b02c08"
+  },
+  {
     "Package": "com.netskao.wechatextension",
     "Name": "微信扩展",
     "Version": "1.1-2~48",
