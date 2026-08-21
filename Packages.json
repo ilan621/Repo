@@ -283,20 +283,5 @@
     "Filename": "debs/con.twigalaxy_1.1.4_iphoneos-arm64e.deb",
     "Size": "435868",
     "SHA256": "d7a62e8322c84334b07365b9bf8505fca4ae271167b8c99c01b9ba64baa4af75"
-  },
-  {
-    "Package": "lead",
-    "Name": "leda",
-    "Version": "1.4.4",
-    "Architecture": "iphoneos-arm64e",
-    "Description": "TG插件",
-    "Maintainer": "1",
-    "Author": "1",
-    "Section": "Tweaks",
-    "Conflicts": "lead",
-    "Provides": "lead",
-    "Filename": "debs/lead-1.4.4-rootless.deb",
-    "Size": "14131414",
-    "SHA256": "08c90724606e96151ca0c8500119f890396a0e35fc07f35d2a5317bfe019cccc"
   }
 ]
