@@ -44,6 +44,20 @@
     "SHA256": "bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc"
   },
   {
+    "Package": "com.25mao.wcplugins.rootless",
+    "Name": "微信插件管理-Rootless",
+    "Version": "0.1-6",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "插件管理-Rootless",
+    "Maintainer": "admin@25mao.com",
+    "Author": "Mao",
+    "Section": "Rootless",
+    "Depends": "firmware (>= 5.0)",
+    "Filename": "debs/com.25mao.wcplugins.rootless_0.1-6_iphoneos-arm64e.deb",
+    "Size": "17980",
+    "SHA256": "20a13f073ff9a4fbed70eeb556c1919be8ff9bd98ad7c6f14dbfa835ea838305"
+  },
+  {
     "Package": "com.Axs.floating-view",
     "Name": "Fv分屏破解版",
     "Version": "1.6.0-6",
