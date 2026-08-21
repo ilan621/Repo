@@ -167,6 +167,21 @@
     "SHA256": "ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac"
   },
   {
+    "Package": "com.wkk.wechatx",
+    "Name": "WeChatX",
+    "Version": "2.1-4",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "一个新生代的插件，主打自由定义与实用为主，更多功能由群友集思广益，如果你想实现自己想要的功能，有更好的想法，欢迎来我的付费群玩。wx号：chn137",
+    "Maintainer": "wkk",
+    "Author": "wkk",
+    "Section": "微信插件",
+    "Depends": "mobilesubstrate (>= 0.9.5000)",
+    "Installed-Size": "15156",
+    "Filename": "debs/com.wkk.wechatx_2.1-4_iphoneos-arm64e.deb",
+    "Size": "3933094",
+    "SHA256": "474e64ef0c3b03e1634408817d018076f28b5b9723a60f5d72fecd75c45bc4ce"
+  },
+  {
     "Package": "cn.llld.biaoji",
     "Name": "截图标记-rootless",
     "Version": "1.6",
