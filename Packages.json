@@ -106,6 +106,21 @@
     "SHA256": "7ea0b037500934c1b6c2693cc3b2bae10ec1f588413693d6c4dbd5f2a91c94ea"
   },
   {
+    "Package": "com.netskao.qqnotiavatar",
+    "Name": "QQNotiAvatar",
+    "Version": "1.2-3",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "Display Notification Avatars for QQ App using iOS15+ APIs",
+    "Maintainer": "Nets",
+    "Author": "Netskao",
+    "Section": "Netskao-Tweaks",
+    "Depends": "firmware (>= 15.0), mobilesubstrate",
+    "Installed-Size": "236",
+    "Filename": "debs/com.netskao.qqnotiavatar_1.2-3_iphoneos-arm64e.deb",
+    "Size": "45516",
+    "SHA256": "07f9338e6ac9a9e11566bb04d5805ffb84459c30ef4e10bbf5ac482475c2dc86"
+  },
+  {
     "Package": "com.netskao.wechatextension",
     "Name": "微信扩展",
     "Version": "1.1-2~48",
