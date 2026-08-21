@@ -58,5 +58,21 @@
     "Filename": "debs/com.iosdump.shellx_2.1.1_iphoneos-arm64e.deb",
     "Size": "885052",
     "SHA256": "19205c5f99a34d053ff86ae0c471b6eff451168d646c102f716f9750ffdf8dcc"
+  },
+  {
+    "Package": "com.opa334.crane",
+    "Name": "Crane",
+    "Version": "1.3.18-2",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "Multiple containers for your applications!",
+    "Maintainer": "opa334",
+    "Author": "opa334",
+    "Section": "Tweaks",
+    "Depends": "firmware (>=11.0), mobilesubstrate, preferenceloader, com.opa334.altlist (>=1.0.5), com.opa334.libsandy (>=1.1.6), com.opa334.libundirect (>=1.1.4) | firmware (<<14.0)",
+    "Conflicts": "com.opa334.cranelite, com.opa334.crane13lite, com.opa334.crane13, com.rpgfarm.slices3, com.subdiox.slices2, com.expetelek.slices",
+    "Installed-Size": "3268",
+    "Filename": "debs/com.opa334.crane_1.3.18-2_iphoneos-arm64e.deb",
+    "Size": "1566672",
+    "SHA256": "b33ed13dc056bfe572aeed844ad0a33986fad99ed08330b3e9edb14f058dc16a"
   }
 ]
