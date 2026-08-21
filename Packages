@@ -98,3 +98,17 @@ Filename: debs/com.opa334.crane_1.3.18-2_iphoneos-arm64e.deb
 Size: 1566672
 SHA256: b33ed13dc056bfe572aeed844ad0a33986fad99ed08330b3e9edb14f058dc16a
 
+Package: com.squidforce.squidextender
+Name: SquidExtender
+Version: 3.7.4
+Architecture: iphoneos-arm64e
+Description: Extend your keyboard to be more POWERFULL!
+Maintainer: SquidForce
+Author: SquidForce
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader, com.opa334.libsandy
+Installed-Size: 10136
+Filename: debs/com.squidforce.squidextender_3.7.4_iphoneos-arm64e.deb
+Size: 6935890
+SHA256: ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac
+
