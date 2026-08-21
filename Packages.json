@@ -120,5 +120,19 @@
     "Filename": "debs/com.squidforce.squidextender_3.7.4_iphoneos-arm64e.deb",
     "Size": "6935890",
     "SHA256": "ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac"
+  },
+  {
+    "Package": "com.tencent.themebox",
+    "Name": "主题盒子",
+    "Version": "3.0.3",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "微信主题盒子",
+    "Maintainer": "admin@25mao.com",
+    "Author": "Mao",
+    "Section": "Tweaks",
+    "Depends": "mobilesubstrate (>= 0.9.5000)",
+    "Filename": "debs/主题盒子3.0.3_roothide（隐根）.deb",
+    "Size": "9172256",
+    "SHA256": "a317aa75017c0f02b9c4bd27be2cb8eff765f3955692854c6a9c0ec1a437ff9f"
   }
 ]
