@@ -159,6 +159,20 @@ Filename: debs/com.squidforce.squidextender_3.7.4_iphoneos-arm64e.deb
 Size: 6935890
 SHA256: ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac
 
+Package: cn.llld.biaoji
+Name: 截图标记-rootless
+Version: 1.6
+Architecture: iphoneos-arm64e
+Description: 给Snapper 或stayShot插件增加标记功能，快速对图进行箭头，打码，复制，方块，涂鸦，保存，高亮，文字等，免去了装第三方软件或者跳转程序的繁琐，14-17可用，改屏幕图标在插件目录下Library/MobileSubstrate/DynamicLibraries/biaoji/pencil.tip.crop.circle.png，设置里图标名为Settings-biaoji.png
+Maintainer: 来了老弟 X: h_h_x_t
+Author: 来了老弟 X: h_h_x_t
+Section: rootless插件
+Depends: mobilesubstrate
+Installed-Size: 164
+Filename: debs/截图标记-rootless_1.6定制包-arm64.deb
+Size: 52706
+SHA256: 41343df83d9dea663d60d342cef9b60a6497923fc268ad8a3e2df1689339d163
+
 Package: aweme.x
 Name: 抖音图层
 Version: 2.6.2
