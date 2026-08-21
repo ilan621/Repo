@@ -1,5 +1,20 @@
 [
   {
+    "Package": "com.ylr.wcsurfacetrim",
+    "Name": "微信广而告之精简",
+    "Version": "1.0",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "禁传播",
+    "Maintainer": "ylr",
+    "Author": "ylr",
+    "Section": "Tweaks",
+    "Depends": "firmware (>= 15.0)",
+    "Installed-Size": "272",
+    "Filename": "debs/AD com.ylr.wcsurfacetrim_1.0_iphoneos-arm64e.deb",
+    "Size": "87578",
+    "SHA256": "bbeb64d9403c7395c93233d3b3cae4123fea2b71a18d2f982b1263126997b37f"
+  },
+  {
     "Package": "cn.llld.snapshottool",
     "Name": "STTool",
     "Version": "4.4",
