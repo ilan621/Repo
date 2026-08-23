@@ -253,6 +253,20 @@ Filename: debs/com.opa334.crane_1.3.18-2_iphoneos-arm64e.deb
 Size: 1566672
 SHA256: b33ed13dc056bfe572aeed844ad0a33986fad99ed08330b3e9edb14f058dc16a
 
+Package: com.opa334.trollstorelite
+Name: TrollStore Lite (RootHide)
+Version: 2.1.1
+Architecture: iphoneos-arm64e
+Description: TrollStore for RootHide jailbroken iOS
+Maintainer: opa334
+Author: opa334
+Section: Applications
+Depends: ldid
+Installed-Size: 556
+Filename: debs/com.opa334.trollstorelite_2.1.1_iphoneos-arm64e (1).deb
+Size: 211888
+SHA256: 2c726d14e14599ae2ef724fb0cbf1444073ec567c017433deaf2de93f6b1874c
+
 Package: com.squidforce.squidextender
 Name: SquidExtender
 Version: 3.7.4
