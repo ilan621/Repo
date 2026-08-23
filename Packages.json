@@ -162,7 +162,7 @@
   {
     "Package": "com.iosdump.shellx",
     "Name": "SHELLX",
-    "Version": "2.3.1",
+    "Version": "2.4.1",
     "Architecture": "iphoneos-arm64e",
     "Description": "支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱",
     "Maintainer": "iosdump",
@@ -170,10 +170,10 @@
     "Section": "Tweaks",
     "Depends": "mobilesubstrate, preferenceloader, com.opa334.ccsupport",
     "Conflicts": "com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33",
-    "Installed-Size": "6476",
-    "Filename": "debs/com.iosdump.shellx_2.3.1_iphoneos-arm64e.deb",
-    "Size": "2839618",
-    "SHA256": "46ee99395ba18a10daa21dd40a99ed612038b7fe813b4352ebfc34c73a044c14"
+    "Installed-Size": "6572",
+    "Filename": "debs/com.iosdump.shellx_2.4.1_iphoneos-arm64e.deb",
+    "Size": "2862880",
+    "SHA256": "2c9cb725e7f7aa86b617482a7fac52ec7f211b6c519875ea92dbe9bbe2b72ec9"
   },
   {
     "Package": "com.lclrc.squidgesturepro",
