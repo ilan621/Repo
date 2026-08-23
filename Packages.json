@@ -237,6 +237,21 @@
     "SHA256": "86ebcf103a34acaddb2aa80c1c0888e13f43aa3b008e1abeedf2e10387b02c08"
   },
   {
+    "Package": "com.netskao.wcdisablehotupdates",
+    "Name": "微信禁用热更新",
+    "Version": "1.1-3",
+    "Architecture": "iphoneos-arm64e",
+    "Description": "微信禁用热更新, 减少热更新频繁导致的杀后台。搭配Hello memory status使用效果更佳。",
+    "Maintainer": "Nets",
+    "Author": "Netskao",
+    "Section": "Netskao-Tweaks",
+    "Depends": "mobilesubstrate, firmware (>= 13.0)",
+    "Installed-Size": "72",
+    "Filename": "debs/com.netskao.wcdisablehotupdates_1.1-3_iphoneos-arm64e.deb",
+    "Size": "2176",
+    "SHA256": "1a7eef3b68bcd5003532df492d479f42cdcf41f2a45172536f6f9abd0f4e2cd5"
+  },
+  {
     "Package": "com.netskao.wechatextension",
     "Name": "微信扩展",
     "Version": "1.1-2~50",
