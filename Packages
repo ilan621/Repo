@@ -337,6 +337,21 @@ Filename: debs/com.wkk.wechatx_2.1-5_iphoneos-arm64e.deb
 Size: 3942390
 SHA256: 816885329169a0efdb390a6da2c4a437b85548b334a69dfe6951fde31f38d07b
 
+Package: com.xuuz.douyinhelper
+Name: 抖音助手
+Version: 2.2-5
+Architecture: iphoneos-arm64
+Description: 三指长按/设置页面/长按视频/聊天界面➕菜单 调出！
+Maintainer: XUUᶻ
+Author: XUUᶻ
+Section: Tweaks
+Depends: firmware (>= 5.0), mobilesubstrate
+Installed-Size: 17608
+Homepage: https://tc.uddz.cc/xuuz
+Filename: debs/com.xuuz.douyinhelper_2.2-5_iphoneos-arm64.deb
+Size: 6803476
+SHA256: 81a20162d307c60876e451bc290ddd8ad3e675e14a06d8dbfc0c168c58523071
+
 Package: com.ylr.wcsurfacetrim
 Name: 微信广而告之精简
 Version: 1.0
