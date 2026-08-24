@@ -149,8 +149,8 @@ Author: huami
 Section: Tweaks
 Depends: mobilesubstrate (>= 0.9.5000)
 Filename: debs/WCPulse_1.6-8-arm64e.deb
-Size: 6135094
-SHA256: 22de801dfeb733d0a2d6f141c256ebc35914138eea156ca374fb4151ce7ae830
+Size: 6135682
+SHA256: c1caa738b356bf061c8b6fe42e0fbec61dacb0d7048e3b9d59d3e1e3c911b28c
 
 Package: com.iosdump.appdata
 Name: AppData
