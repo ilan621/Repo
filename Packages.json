@@ -48,17 +48,17 @@
   {
     "Package": "cn.zqbb.jailfools",
     "Name": "JailFools",
-    "Version": "5.0.3",
+    "Version": "5.2.1",
     "Architecture": "iphoneos-arm64e",
     "Description": "Give me 108 yuan.",
     "Maintainer": "zqbb <zqbbzz@gmail.com>",
     "Author": "zqbb <zqbbzz@gmail.com>",
     "Section": "Applications",
     "Depends": "firmware (>= 15.0)",
-    "Installed-Size": "16628",
-    "Filename": "debs/cn.zqbb.jailfools_5.0.3_iphoneos-arm64e.deb",
-    "Size": "4535612",
-    "SHA256": "fe3e9594296fba83442a25249680c8715a4bcda8662399456d0d3d35cde3b651"
+    "Installed-Size": "16700",
+    "Filename": "debs/cn.zqbb.jailfools_5.2.1_iphoneos-arm64e.deb",
+    "Size": "4600858",
+    "SHA256": "cb68b669ce9f8fd79f0faf327c8b7d5d609824df9506285dcd10da4c621dcc8a"
   },
   {
     "Package": "com.25mao.BubbleBox",
