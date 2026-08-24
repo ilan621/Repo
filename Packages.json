@@ -315,17 +315,17 @@
   {
     "Package": "com.wkk.copylogx",
     "Name": "CopylogX",
-    "Version": "1.0-4",
+    "Version": "1.0-5",
     "Architecture": "iphoneos-arm64e",
     "Description": "A lightweight clipboard panel for iOS.",
     "Maintainer": "wkk",
     "Author": "wkk",
     "Section": "Tweaks",
     "Depends": "firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader",
-    "Installed-Size": "1596",
-    "Filename": "debs/com.wkk.copylogx_1.0-4_iphoneos-arm64e.deb",
-    "Size": "208370",
-    "SHA256": "2c3cecd052027331f8571388c8ce6bd1778890c4c1b491c0d84b751dfbad779a"
+    "Installed-Size": "1612",
+    "Filename": "debs/com.wkk.copylogx_1.0-5_iphoneos-arm64e.deb",
+    "Size": "215316",
+    "SHA256": "dcde5c3bd98d596d40d4ba01d5c4106688c929f4f7450eba196778c9e210c727"
   },
   {
     "Package": "com.wkk.keyboardx",
