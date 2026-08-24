@@ -141,16 +141,16 @@ SHA256: 9f5f4c637f190dd2f569fb6c817b804eb947cb909be7a02afceb06194544d36f
 
 Package: com.huami.WCPulse
 Name: WCPulse
-Version: 1.6-8
+Version: 1.6-9
 Architecture: iphoneos-arm64e
 Description: WCPulse
 Maintainer: huami
 Author: huami
 Section: Tweaks
 Depends: mobilesubstrate (>= 0.9.5000)
-Filename: debs/WCPulse_1.6-8-arm64e.deb
-Size: 6135682
-SHA256: c1caa738b356bf061c8b6fe42e0fbec61dacb0d7048e3b9d59d3e1e3c911b28c
+Filename: debs/WCPulse_1.6-9-arm64e.deb
+Size: 4850944
+SHA256: 178c3cc0916e0b6d3a718f1a7a8de8c170a1828b7ae2defc5f41ea53ed437cce
 
 Package: com.iosdump.appdata
 Name: AppData
@@ -168,7 +168,7 @@ SHA256: 0d073563e9c8e2f14cb4d520f69ed8cb55fbb4b6b8d7bdd0f71af756c8168d9a
 
 Package: com.iosdump.shellx
 Name: SHELLX
-Version: 2.4.1
+Version: 2.4.6
 Architecture: iphoneos-arm64e
 Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
 Maintainer: iosdump
@@ -176,10 +176,10 @@ Author: iosdump
 Section: Tweaks
 Depends: mobilesubstrate, preferenceloader, com.opa334.ccsupport
 Conflicts: com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33
-Installed-Size: 6572
-Filename: debs/com.iosdump.shellx_2.4.1_iphoneos-arm64e.deb
-Size: 2862880
-SHA256: 2c9cb725e7f7aa86b617482a7fac52ec7f211b6c519875ea92dbe9bbe2b72ec9
+Installed-Size: 6652
+Filename: debs/com.iosdump.shellx_2.4.6_iphoneos-arm64e.deb
+Size: 2885428
+SHA256: 7047ec9184286d7e244a3fd7cf04cc6fb17871b75d1c2575ee4c8a94a64cf8c1
 
 Package: com.lclrc.squidgesturepro
 Name: SquidGesture Pro
