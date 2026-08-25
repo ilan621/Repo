@@ -141,16 +141,16 @@ SHA256: 9f5f4c637f190dd2f569fb6c817b804eb947cb909be7a02afceb06194544d36f
 
 Package: com.huami.WCPulse
 Name: WCPulse
-Version: 1.6-9
+Version: 1.7-1
 Architecture: iphoneos-arm64e
 Description: WCPulse
 Maintainer: huami
 Author: huami
 Section: Tweaks
 Depends: mobilesubstrate (>= 0.9.5000)
-Filename: debs/WCPulse_1.6-9-arm64e.deb
-Size: 4850944
-SHA256: 178c3cc0916e0b6d3a718f1a7a8de8c170a1828b7ae2defc5f41ea53ed437cce
+Filename: debs/WCPulse_1.7-1-arm64e.deb
+Size: 4892374
+SHA256: c10f40785dd96dd8fa12494d579ea6ca7278d55277bdcfeaa09ced389db6a0fd
 
 Package: com.iosdump.appdata
 Name: AppData
