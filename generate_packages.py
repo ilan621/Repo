@@ -5,7 +5,6 @@ import hashlib
 import subprocess
 from pathlib import Path
 from email.utils import formatdate
-from functools import cmp_to_key
 
 
 DEB_DIR = Path("debs")
@@ -49,7 +48,6 @@ def parse_control(data):
 
 # ============================================================
 # Debian 版本比较
-#
 # 支持：
 # 1.1-2~48
 # 1.1-2~50
@@ -70,56 +68,9 @@ def debian_version_compare(a, b):
 
     while ia < len(a) or ib < len(b):
 
-        # -------------------------
-        # 非数字部分
-        # -------------------------
-
-        while (
-            ia < len(a)
-            and not a[ia].isdigit()
-        ):
-
-            ca = a[ia]
-
-            if ib < len(b) and b[ib].isdigit():
-                break
-
-            cb = b[ib] if ib < len(b) else ""
-
-            # Debian 特殊规则：
-            # ~ 永远比其他字符更小
-            if ca == "~" or cb == "~":
-
-                if ca == "~" and cb != "~":
-                    return -1
-
-                if cb == "~" and ca != "~":
-                    return 1
-
-            if ca != cb:
-
-                if ca == "":
-                    return -1
-
-                if cb == "":
-                    return 1
-
-                # 字母通常排在非字母后面
-                if ca.isalpha() and not cb.isalpha():
-                    return 1
-
-                if cb.isalpha() and not ca.isalpha():
-                    return -1
-
-                return -1 if ca < cb else 1
-
-            ia += 1
-            if ib < len(b):
-                ib += 1
-
-        # -------------------------
-        # 跳过 ~ 等特殊字符
-        # -------------------------
+        # ----------------------------------------------------
+        # ~ 特殊规则
+        # ----------------------------------------------------
 
         if ia < len(a) and a[ia] == "~":
             if ib >= len(b) or b[ib] != "~":
@@ -129,23 +80,87 @@ def debian_version_compare(a, b):
             if ia >= len(a) or a[ia] != "~":
                 return 1
 
-        # -------------------------
-        # 数字部分
-        # -------------------------
+        # ----------------------------------------------------
+        # 非数字部分
+        # ----------------------------------------------------
 
         while ia < len(a) and not a[ia].isdigit():
 
             if a[ia] == "~":
                 break
 
+            ca = a[ia]
+            cb = b[ib] if ib < len(b) else ""
+
+            if cb == "~":
+                return 1
+
+            if cb.isdigit():
+                break
+
+            if ca != cb:
+
+                if ca.isalpha() and not cb.isalpha():
+                    return 1
+
+                if cb.isalpha() and not ca.isalpha():
+                    return -1
+
+                return -1 if ca < cb else 1
+
             ia += 1
+
+            if ib < len(b):
+                ib += 1
 
         while ib < len(b) and not b[ib].isdigit():
 
             if b[ib] == "~":
                 break
 
+            cb = b[ib]
+            ca = a[ia] if ia < len(a) else ""
+
+            if ca == "~":
+                return -1
+
+            if ca.isdigit():
+                break
+
+            if ca != cb:
+
+                if ca.isalpha() and not cb.isalpha():
+                    return 1
+
+                if cb.isalpha() and not ca.isalpha():
+                    return -1
+
+                return -1 if ca < cb else 1
+
             ib += 1
+
+            if ia < len(a):
+                ia += 1
+
+        # ----------------------------------------------------
+        # ~
+        # ----------------------------------------------------
+
+        if ia < len(a) and a[ia] == "~":
+
+            if ib >= len(b) or b[ib] != "~":
+                return -1
+
+            ia += 1
+            ib += 1
+            continue
+
+        if ib < len(b) and b[ib] == "~":
+            return 1
+
+        # ----------------------------------------------------
+        # 数字部分
+        # ----------------------------------------------------
 
         if (
             ia < len(a)
@@ -172,46 +187,28 @@ def debian_version_compare(a, b):
             if na != nb:
                 return 1 if na > nb else -1
 
-        else:
+            continue
 
-            if ia < len(a) and a[ia] == "~":
-                if not (
-                    ib < len(b)
-                    and b[ib] == "~"
-                ):
-                    return -1
+        # ----------------------------------------------------
+        # 一个结束
+        # ----------------------------------------------------
 
-            if ib < len(b) and b[ib] == "~":
-                if not (
-                    ia < len(a)
-                    and a[ia] == "~"
-                ):
-                    return 1
+        if ia >= len(a) and ib >= len(b):
+            break
 
-            if ia >= len(a) and ib >= len(b):
-                break
+        if ia >= len(a):
+            return -1
 
-            if ia >= len(a):
-                return -1
+        if ib >= len(b):
+            return 1
 
-            if ib >= len(b):
-                return 1
+        if a[ia] != b[ib]:
+            return -1 if a[ia] < b[ib] else 1
 
-            if a[ia] != b[ib]:
-                return -1 if a[ia] < b[ib] else 1
-
-            ia += 1
-            ib += 1
+        ia += 1
+        ib += 1
 
     return 0
-
-
-def version_key_compare(item_a, item_b):
-
-    return debian_version_compare(
-        item_a.get("Version", ""),
-        item_b.get("Version", "")
-    )
 
 
 # ============================================================
@@ -246,7 +243,7 @@ def read_deb_control(path):
 
 
 # ============================================================
-# 读取网页上传器的 packages.json
+# 读取网页上传器 packages.json
 # ============================================================
 
 def load_custom_metadata():
@@ -301,14 +298,7 @@ def load_custom_metadata():
         if not package_id:
             continue
 
-        # ====================================================
-        # ⭐ 关键修改
-        #
-        # 不再只使用 Package ID
-        #
         # Package + Version 才是唯一 metadata
-        # ====================================================
-
         key = (
             package_id,
             version
@@ -389,14 +379,13 @@ def make_entry(
 
         return None
 
-    # ========================================================
+    # --------------------------------------------------------
     # 原始 DEB 信息
-    # ========================================================
+    # --------------------------------------------------------
 
     entry = {}
 
     fields = [
-
         "Package",
         "Name",
         "Version",
@@ -410,7 +399,6 @@ def make_entry(
         "Provides",
         "Installed-Size",
         "Homepage"
-
     ]
 
     for field in fields:
@@ -418,10 +406,9 @@ def make_entry(
         if field in control:
             entry[field] = control[field]
 
-
-    # ========================================================
-    # ⭐ Package + Version 匹配自定义信息
-    # ========================================================
+    # --------------------------------------------------------
+    # Package + Version 匹配自定义信息
+    # --------------------------------------------------------
 
     custom = custom_metadata.get(
         (
@@ -431,13 +418,9 @@ def make_entry(
         {}
     )
 
-
-    # ========================================================
-    # 如果没找到精确版本
-    # 尝试寻找 Package 对应的 metadata
-    #
-    # 这样可以兼容以前的 packages.json
-    # ========================================================
+    # --------------------------------------------------------
+    # 兼容以前只有 Package 的 metadata
+    # --------------------------------------------------------
 
     if not custom:
 
@@ -460,10 +443,9 @@ def make_entry(
                 f"{package_id}"
             )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 自定义 Package
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_package = (
         custom.get("package")
@@ -474,10 +456,9 @@ def make_entry(
     if custom_package:
         entry["Package"] = custom_package
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 自定义名称
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_name = (
         custom.get("name")
@@ -488,14 +469,9 @@ def make_entry(
     if custom_name:
         entry["Name"] = custom_name
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 自定义版本
-    #
-    # ⭐ 默认永远使用 DEB 自己的 Version
-    #
-    # 防止 ~48 被错误改成 ~50
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_version = (
         custom.get("version")
@@ -512,7 +488,7 @@ def make_entry(
         else:
 
             print(
-                "  ⚠️ 忽略 metadata 版本不一致："
+                "  ⚠️ 忽略 metadata 版本不一致:"
             )
 
             print(
@@ -525,10 +501,9 @@ def make_entry(
 
             entry["Version"] = version
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 作者
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_author = (
         custom.get("author")
@@ -539,10 +514,9 @@ def make_entry(
     if custom_author:
         entry["Author"] = custom_author
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 架构
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_architecture = (
         custom.get("architecture")
@@ -551,14 +525,11 @@ def make_entry(
     ).strip()
 
     if custom_architecture:
-        entry["Architecture"] = (
-            custom_architecture
-        )
+        entry["Architecture"] = custom_architecture
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 中文描述
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_description = (
         custom.get("description")
@@ -568,14 +539,11 @@ def make_entry(
 
     if custom_description:
 
-        entry["Description"] = (
-            custom_description
-        )
+        entry["Description"] = custom_description
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 文件信息
-    # ========================================================
+    # --------------------------------------------------------
 
     relative = str(
         path
@@ -589,19 +557,21 @@ def make_entry(
 
     entry["SHA256"] = sha256_file(path)
 
-
     return entry
 
 
 # ============================================================
-# ⭐ 去除重复 Package + Version
+# 去除完全重复的 Package + Version
 #
-# 如果同一个 Package 有：
+# 注意：
+# 这里只删除完全相同的 Package + Version。
 #
+# 不同版本：
 # ~48
 # ~50
+# ~51
 #
-# 只保留最高版本。
+# 全部保留。
 # ============================================================
 
 def remove_duplicate_versions(entries):
@@ -634,7 +604,7 @@ def remove_duplicate_versions(entries):
             old = grouped[key]
 
             print(
-                "⚠️ 删除重复版本："
+                "⚠️ 发现重复 Package + Version:"
             )
 
             print(
@@ -647,73 +617,8 @@ def remove_duplicate_versions(entries):
                 entry.get("Filename")
             )
 
-            # 文件名更稳定的一个
-            # 默认保留后扫描到的版本
-
+            # 保留后扫描到的文件
             grouped[key] = entry
-
-
-    return list(
-        grouped.values()
-    )
-
-
-# ============================================================
-# ⭐ 同 Package 多版本只保留最高版本
-# ============================================================
-
-def keep_latest_versions(entries):
-
-    grouped = {}
-
-    for entry in entries:
-
-        package = entry.get(
-            "Package",
-            ""
-        )
-
-        if not package:
-            continue
-
-        if package not in grouped:
-
-            grouped[package] = entry
-
-            continue
-
-        old = grouped[package]
-
-        old_version = old.get(
-            "Version",
-            ""
-        )
-
-        new_version = entry.get(
-            "Version",
-            ""
-        )
-
-        result = debian_version_compare(
-            new_version,
-            old_version
-        )
-
-        if result > 0:
-
-            print(
-                f"🔄 {package}: "
-                f"{old_version} → {new_version}"
-            )
-
-            grouped[package] = entry
-
-        else:
-
-            print(
-                f"⏭️ 保留版本："
-                f"{old_version}"
-            )
 
     return list(
         grouped.values()
@@ -722,16 +627,70 @@ def keep_latest_versions(entries):
 
 # ============================================================
 # Packages 排序
+#
+# 同一个插件的多个版本全部保留。
+#
+# 例如：
+#
+# com.example.test 1.0
+# com.example.test 1.1
+# com.example.test 1.2
+#
+# 都会存在。
 # ============================================================
 
 def sort_entries(entries):
 
+    def compare(a, b):
+
+        package_a = a.get(
+            "Package",
+            ""
+        )
+
+        package_b = b.get(
+            "Package",
+            ""
+        )
+
+        if package_a != package_b:
+
+            return (
+                -1
+                if package_a < package_b
+                else 1
+            )
+
+        arch_a = a.get(
+            "Architecture",
+            ""
+        )
+
+        arch_b = b.get(
+            "Architecture",
+            ""
+        )
+
+        if arch_a != arch_b:
+
+            return (
+                -1
+                if arch_a < arch_b
+                else 1
+            )
+
+        # 同 Package + Architecture
+        # 版本从高到低排列
+        return -debian_version_compare(
+            a.get("Version", ""),
+            b.get("Version", "")
+        )
+
+    from functools import cmp_to_key
+
     return sorted(
         entries,
-        key=lambda x: (
-            x.get("Package", ""),
-            x.get("Architecture", "")
-        )
+        key=cmp_to_key(compare)
     )
 
 
@@ -803,14 +762,12 @@ def generate_compressed():
 
     content = OUTPUT.read_bytes()
 
-
     with gzip.open(
         "Packages.gz",
         "wb"
     ) as f:
 
         f.write(content)
-
 
     with bz2.open(
         "Packages.bz2",
@@ -882,7 +839,6 @@ def generate_release():
             f" {sha256} {size} {filename}"
         )
 
-
     content = f"""Origin: ilan
 Label: ilan
 Suite: stable
@@ -898,7 +854,6 @@ MD5Sum:
 SHA256:
 {chr(10).join(sha256_lines)}
 """
-
 
     with open(
         "Release",
@@ -922,7 +877,6 @@ def main():
     print("================================")
     print()
 
-
     if not DEB_DIR.exists():
 
         DEB_DIR.mkdir(
@@ -930,27 +884,23 @@ def main():
             exist_ok=True
         )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 读取网页自定义信息
-    # ========================================================
+    # --------------------------------------------------------
 
     custom_metadata = (
         load_custom_metadata()
     )
 
-
     entries = []
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # 扫描 DEB
-    # ========================================================
+    # --------------------------------------------------------
 
     deb_files = sorted(
         DEB_DIR.rglob("*.deb")
     )
-
 
     print(
         f"📦 找到 DEB："
@@ -959,7 +909,6 @@ def main():
 
     print()
 
-
     for path in deb_files:
 
         print(
@@ -967,12 +916,10 @@ def main():
             path
         )
 
-
         entry = make_entry(
             path,
             custom_metadata
         )
-
 
         if entry:
 
@@ -984,44 +931,44 @@ def main():
                 entry.get("Version")
             )
 
-
-    # ========================================================
-    # 去重
-    # ========================================================
+    # --------------------------------------------------------
+    # 去掉完全重复的 Package + Version
+    # --------------------------------------------------------
 
     entries = remove_duplicate_versions(
         entries
     )
 
+    # --------------------------------------------------------
+    # ⚠️ 这里故意没有调用 keep_latest_versions()
+    #
+    # 因此同一个插件的所有版本都会保留。
+    #
+    # 例如：
+    #
+    # ~48
+    # ~50
+    #
+    # 两个都会进入 Packages。
+    # --------------------------------------------------------
 
-    # ========================================================
-    # 同一个插件只保留最新版本
-    # ========================================================
-
-    entries = keep_latest_versions(
-        entries
-    )
-
-
-    # ========================================================
+    # --------------------------------------------------------
     # 排序
-    # ========================================================
+    # --------------------------------------------------------
 
     entries = sort_entries(
         entries
     )
 
-
     print()
     print(
-        f"📋 最终插件数量："
+        f"📋 最终插件版本数量："
         f"{len(entries)}"
     )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # Packages
-    # ========================================================
+    # --------------------------------------------------------
 
     generate_packages(
         entries
@@ -1031,10 +978,9 @@ def main():
         "✅ Packages"
     )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # Packages.gz / Packages.bz2
-    # ========================================================
+    # --------------------------------------------------------
 
     generate_compressed()
 
@@ -1046,10 +992,9 @@ def main():
         "✅ Packages.bz2"
     )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # Packages.json
-    # ========================================================
+    # --------------------------------------------------------
 
     generate_packages_json(
         entries
@@ -1059,10 +1004,9 @@ def main():
         "✅ Packages.json"
     )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # Release
-    # ========================================================
+    # --------------------------------------------------------
 
     generate_release()
 
@@ -1070,14 +1014,13 @@ def main():
         "✅ Release"
     )
 
-
     print()
     print("================================")
     print(
         "🎉 RootHide Packages generated"
     )
     print(
-        "Plugins:",
+        "Plugin versions:",
         len(entries)
     )
     print("================================")
