@@ -55,6 +55,34 @@ Filename: debs/cn.zqbb.jailfools_5.2.1_iphoneos-arm64e.deb
 Size: 4600858
 SHA256: cb68b669ce9f8fd79f0faf327c8b7d5d609824df9506285dcd10da4c621dcc8a
 
+Package: cn.zqbb.jailfools
+Name: JailFools
+Version: 5.0.3
+Architecture: iphoneos-arm64e
+Description: Give me 108 yuan.
+Maintainer: zqbb <zqbbzz@gmail.com>
+Author: zqbb <zqbbzz@gmail.com>
+Section: Applications
+Depends: firmware (>= 15.0)
+Installed-Size: 16628
+Filename: debs/cn.zqbb.jailfools_5.0.3_iphoneos-arm64e.deb
+Size: 4535612
+SHA256: fe3e9594296fba83442a25249680c8715a4bcda8662399456d0d3d35cde3b651
+
+Package: cn.zqbb.jailfools
+Name: JailFools
+Version: 4.3-253
+Architecture: iphoneos-arm64e
+Description: Give me 108 yuan.
+Maintainer: zqbb <zqbbzz@gmail.com>
+Author: zqbb <zqbbzz@gmail.com>
+Section: Applications
+Depends: firmware (>= 15.0)
+Installed-Size: 16640
+Filename: debs/cn.zqbb.jailfools_4.3-253_iphoneos-arm64e.deb
+Size: 4581304
+SHA256: 044ac01b2789ba101a57e43532e80447e057628ef36e753da3b5ca2594241a21
+
 Package: com.25mao.BubbleBox
 Name: 气泡盒子
 Version: 1.0-7
@@ -152,6 +180,58 @@ Filename: debs/WCPulse_1.7-2-arm64e.deb
 Size: 4919944
 SHA256: f0a7b6cee3a426ec274b969f16861b9bceeaee53111a5dab1b077afaf8116f4c
 
+Package: com.huami.WCPulse
+Name: WCPulse
+Version: 1.7-1
+Architecture: iphoneos-arm64e
+Description: WCPulse
+Maintainer: huami
+Author: huami
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: debs/WCPulse_1.7-1-arm64e.deb
+Size: 4892374
+SHA256: c10f40785dd96dd8fa12494d579ea6ca7278d55277bdcfeaa09ced389db6a0fd
+
+Package: com.huami.WCPulse
+Name: WCPulse
+Version: 1.6-9
+Architecture: iphoneos-arm64e
+Description: WCPulse
+Maintainer: huami
+Author: huami
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: debs/WCPulse_1.6-9-arm64e.deb
+Size: 4850944
+SHA256: 178c3cc0916e0b6d3a718f1a7a8de8c170a1828b7ae2defc5f41ea53ed437cce
+
+Package: com.huami.WCPulse
+Name: WCPulse
+Version: 1.6-8
+Architecture: iphoneos-arm64e
+Description: WCPulse
+Maintainer: huami
+Author: huami
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: debs/WCPulse_1.6-8-arm64e.deb
+Size: 6135682
+SHA256: c1caa738b356bf061c8b6fe42e0fbec61dacb0d7048e3b9d59d3e1e3c911b28c
+
+Package: com.huami.WCPulse
+Name: WCPulse
+Version: 1.6-7
+Architecture: iphoneos-arm64e
+Description: WCPulse
+Maintainer: huami
+Author: huami
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: debs/WCPulse_1.6-7-arm64e.deb
+Size: 6107278
+SHA256: 5073ef47b1e5266c24890f57b97bf3e86d311617977c08cdbbbd406a014e4fe1
+
 Package: com.iosdump.appdata
 Name: AppData
 Version: 2.6.9
@@ -180,6 +260,66 @@ Installed-Size: 6652
 Filename: debs/com.iosdump.shellx_2.4.6_iphoneos-arm64e.deb
 Size: 2885428
 SHA256: 7047ec9184286d7e244a3fd7cf04cc6fb17871b75d1c2575ee4c8a94a64cf8c1
+
+Package: com.iosdump.shellx
+Name: SHELLX
+Version: 2.4.1
+Architecture: iphoneos-arm64e
+Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
+Maintainer: iosdump
+Author: iosdump
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader, com.opa334.ccsupport
+Conflicts: com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33
+Installed-Size: 6572
+Filename: debs/com.iosdump.shellx_2.4.1_iphoneos-arm64e.deb
+Size: 2862880
+SHA256: 2c9cb725e7f7aa86b617482a7fac52ec7f211b6c519875ea92dbe9bbe2b72ec9
+
+Package: com.iosdump.shellx
+Name: SHELLX
+Version: 2.3.1
+Architecture: iphoneos-arm64e
+Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
+Maintainer: iosdump
+Author: iosdump
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader, com.opa334.ccsupport
+Conflicts: com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33
+Installed-Size: 6476
+Filename: debs/com.iosdump.shellx_2.3.1_iphoneos-arm64e.deb
+Size: 2839618
+SHA256: 46ee99395ba18a10daa21dd40a99ed612038b7fe813b4352ebfc34c73a044c14
+
+Package: com.iosdump.shellx
+Name: SHELLX
+Version: 2.2.1
+Architecture: iphoneos-arm64e
+Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
+Maintainer: iosdump
+Author: iosdump
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader, com.opa334.ccsupport
+Conflicts: com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33
+Installed-Size: 4180
+Filename: debs/com.iosdump.shellx_2.2.1_iphoneos-arm64e.deb
+Size: 988404
+SHA256: 65b02306ded9d80a97b508ad95a7c2bc787aed5de281790165521349eb8a0f04
+
+Package: com.iosdump.shellx
+Name: SHELLX
+Version: 2.1.1
+Architecture: iphoneos-arm64e
+Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
+Maintainer: iosdump
+Author: iosdump
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader
+Conflicts: com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33
+Installed-Size: 2788
+Filename: debs/com.iosdump.shellx_2.1.1_iphoneos-arm64e.deb
+Size: 885052
+SHA256: 19205c5f99a34d053ff86ae0c471b6eff451168d646c102f716f9750ffdf8dcc
 
 Package: com.lclrc.squidgesturepro
 Name: SquidGesture Pro
@@ -252,6 +392,20 @@ Filename: debs/com.netskao.wechatextension_1.1-2~50_iphoneos-arm64e.deb
 Size: 41543126
 SHA256: 4718673da6f5cbd5d541275641161b4c8769eb6bc5a02e6bc4687997ce2742b9
 
+Package: com.netskao.wechatextension
+Name: 微信扩展
+Version: 1.1-2~48
+Architecture: iphoneos-arm64e
+Description: 微信扩展, 仅支持8.0.56及以上版本, 设置位于微信-设置
+Maintainer: Nets
+Author: Netskao
+Section: Netskao-Tweaks
+Depends: mobilesubstrate, firmware (>= 15.0)
+Installed-Size: 56748
+Filename: debs/com.netskao.wechatextension_1.1-2~48_iphoneos-arm64e.deb
+Size: 41142808
+SHA256: f2857b0ae25c804a1168fb2103946f6b4cc850251d24bdae3f103eee8257f562
+
 Package: com.opa334.trollstorelite
 Name: TrollStore Lite (RootHide)
 Version: 2.1.1-1
@@ -293,6 +447,48 @@ Filename: debs/com.wkk.copylogx_1.0-5_iphoneos-arm64e.deb
 Size: 215316
 SHA256: dcde5c3bd98d596d40d4ba01d5c4106688c929f4f7450eba196778c9e210c727
 
+Package: com.wkk.copylogx
+Name: CopylogX
+Version: 1.0-4
+Architecture: iphoneos-arm64e
+Description: A lightweight clipboard panel for iOS.
+Maintainer: wkk
+Author: wkk
+Section: Tweaks
+Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader
+Installed-Size: 1596
+Filename: debs/com.wkk.copylogx_1.0-4_iphoneos-arm64e.deb
+Size: 208370
+SHA256: 2c3cecd052027331f8571388c8ce6bd1778890c4c1b491c0d84b751dfbad779a
+
+Package: com.wkk.copylogx
+Name: CopylogX
+Version: 1.0-3
+Architecture: iphoneos-arm64e
+Description: A lightweight clipboard panel for iOS.
+Maintainer: wkk
+Author: wkk
+Section: Tweaks
+Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader
+Installed-Size: 1596
+Filename: debs/com.wkk.copylogx_1.0-3_iphoneos-arm64e.deb
+Size: 207442
+SHA256: 79e320e94b9af13a308414ff943d5fa39ae15472c5bdfc75ce248709c9b132f0
+
+Package: com.wkk.copylogx
+Name: CopylogX
+Version: 1.0-2
+Architecture: iphoneos-arm64e
+Description: A lightweight clipboard panel for iOS.
+Maintainer: wkk
+Author: wkk
+Section: Tweaks
+Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader
+Installed-Size: 1512
+Filename: debs/com.wkk.copylogx_1.0-2_iphoneos-arm64e.deb
+Size: 185706
+SHA256: ac3e170573948e294c8c445241817c6066e1ac57b29c3e6ab82a2acbc83f834a
+
 Package: com.wkk.keyboardx
 Name: KeyboardX
 Version: 1.1-0
@@ -307,6 +503,20 @@ Filename: debs/com.wkk.keyboardx_1.1-0_iphoneos-arm64e.deb
 Size: 77762
 SHA256: cbd0ad027c11be81fd944877b7f6a1bb535fe9605182bb6475667f88dbabcecc
 
+Package: com.wkk.keyboardx
+Name: KeyboardX
+Version: 1.0-6
+Architecture: iphoneos-arm64e
+Description: 键盘调整。
+Maintainer: wkk
+Author: wkk
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader
+Installed-Size: 500
+Filename: debs/com.wkk.keyboardx_1.0-6_iphoneos-arm64e.deb
+Size: 62204
+SHA256: 03ed401ae51f042ae8278eeb57cfda9fd95fac20ede4dd63b6fe5c103d9581ef
+
 Package: com.wkk.wechatx
 Name: WeChatX
 Version: 2.1-5
@@ -320,6 +530,20 @@ Installed-Size: 15188
 Filename: debs/com.wkk.wechatx_2.1-5_iphoneos-arm64e.deb
 Size: 3942390
 SHA256: 816885329169a0efdb390a6da2c4a437b85548b334a69dfe6951fde31f38d07b
+
+Package: com.wkk.wechatx
+Name: WeChatX
+Version: 2.1-4
+Architecture: iphoneos-arm64e
+Description: 一个新生代的插件，主打自由定义与实用为主，更多功能由群友集思广益，如果你想实现自己想要的功能，有更好的想法，欢迎来我的付费群玩。wx号：chn137
+Maintainer: wkk
+Author: wkk
+Section: 微信插件
+Depends: mobilesubstrate (>= 0.9.5000)
+Installed-Size: 15156
+Filename: debs/com.wkk.wechatx_2.1-4_iphoneos-arm64e.deb
+Size: 3933094
+SHA256: 474e64ef0c3b03e1634408817d018076f28b5b9723a60f5d72fecd75c45bc4ce
 
 Package: com.xuuz.douyinhelper
 Name: 抖音助手
