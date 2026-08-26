@@ -5,6 +5,7 @@ import hashlib
 import subprocess
 from pathlib import Path
 from email.utils import formatdate
+from functools import cmp_to_key
 
 
 DEB_DIR = Path("debs")
@@ -48,11 +49,6 @@ def parse_control(data):
 
 # ============================================================
 # Debian 版本比较
-# 支持：
-# 1.1-2~48
-# 1.1-2~50
-# 1.1-2
-# 2.0
 # ============================================================
 
 def debian_version_compare(a, b):
@@ -243,7 +239,7 @@ def read_deb_control(path):
 
 
 # ============================================================
-# 读取网页上传器 packages.json
+# 读取自定义插件信息
 # ============================================================
 
 def load_custom_metadata():
@@ -298,7 +294,6 @@ def load_custom_metadata():
         if not package_id:
             continue
 
-        # Package + Version 才是唯一 metadata
         key = (
             package_id,
             version
@@ -538,7 +533,6 @@ def make_entry(
     ).strip()
 
     if custom_description:
-
         entry["Description"] = custom_description
 
     # --------------------------------------------------------
@@ -561,17 +555,9 @@ def make_entry(
 
 
 # ============================================================
-# 去除完全重复的 Package + Version
+# 只删除完全相同的 Package + Version
 #
-# 注意：
-# 这里只删除完全相同的 Package + Version。
-#
-# 不同版本：
-# ~48
-# ~50
-# ~51
-#
-# 全部保留。
+# 不同版本绝对不会删除
 # ============================================================
 
 def remove_duplicate_versions(entries):
@@ -590,9 +576,15 @@ def remove_duplicate_versions(entries):
             ""
         )
 
+        architecture = entry.get(
+            "Architecture",
+            ""
+        )
+
         key = (
             package,
-            version
+            version,
+            architecture
         )
 
         if key not in grouped:
@@ -603,8 +595,9 @@ def remove_duplicate_versions(entries):
 
             old = grouped[key]
 
+            print()
             print(
-                "⚠️ 发现重复 Package + Version:"
+                "⚠️ 发现完全重复的 Package + Version + Architecture:"
             )
 
             print(
@@ -626,17 +619,10 @@ def remove_duplicate_versions(entries):
 
 
 # ============================================================
-# Packages 排序
+# 排序
 #
-# 同一个插件的多个版本全部保留。
-#
-# 例如：
-#
-# com.example.test 1.0
-# com.example.test 1.1
-# com.example.test 1.2
-#
-# 都会存在。
+# 同一个插件的所有版本全部保留
+# 最新版本排前面
 # ============================================================
 
 def sort_entries(entries):
@@ -679,19 +665,41 @@ def sort_entries(entries):
                 else 1
             )
 
-        # 同 Package + Architecture
-        # 版本从高到低排列
         return -debian_version_compare(
             a.get("Version", ""),
             b.get("Version", "")
         )
 
-    from functools import cmp_to_key
-
     return sorted(
         entries,
         key=cmp_to_key(compare)
     )
+
+
+# ============================================================
+# 检查指定插件版本
+# ============================================================
+
+def check_plugin_versions(
+    entries,
+    package_id
+):
+
+    versions = []
+
+    for entry in entries:
+
+        if entry.get("Package") == package_id:
+
+            version = entry.get(
+                "Version",
+                ""
+            )
+
+            if version:
+                versions.append(version)
+
+    return versions
 
 
 # ============================================================
@@ -752,6 +760,82 @@ def generate_packages(entries):
                 )
 
             f.write("\n")
+
+
+# ============================================================
+# 验证 Packages 文件
+# ============================================================
+
+def verify_packages_file(
+    package_id,
+    required_versions
+):
+
+    if not OUTPUT.exists():
+
+        print(
+            "❌ Packages 文件不存在"
+        )
+
+        return False
+
+    content = OUTPUT.read_text(
+        encoding="utf-8"
+    )
+
+    missing = []
+
+    for version in required_versions:
+
+        package_block = False
+        found = False
+
+        blocks = content.split(
+            "\n\n"
+        )
+
+        for block in blocks:
+
+            if (
+                f"Package: {package_id}" in block
+                and
+                f"Version: {version}" in block
+            ):
+
+                package_block = True
+                found = True
+                break
+
+        if not found:
+            missing.append(version)
+
+    if missing:
+
+        print()
+        print(
+            f"❌ Packages 中缺少 {package_id} 版本:"
+        )
+
+        for version in missing:
+
+            print(
+                f"   ❌ {version}"
+            )
+
+        return False
+
+    print()
+    print(
+        f"✅ Packages 已确认包含 {package_id} 的所有指定版本:"
+    )
+
+    for version in required_versions:
+
+        print(
+            f"   ✅ {version}"
+        )
+
+    return True
 
 
 # ============================================================
@@ -932,25 +1016,106 @@ def main():
             )
 
     # --------------------------------------------------------
-    # 去掉完全重复的 Package + Version
+    # 如果没有有效 DEB
     # --------------------------------------------------------
+
+    if not entries:
+
+        print()
+        print(
+            "❌ 没有成功读取任何 DEB"
+        )
+
+        raise SystemExit(1)
+
+    # --------------------------------------------------------
+    # 去除完全重复版本
+    # --------------------------------------------------------
+
+    before_count = len(entries)
 
     entries = remove_duplicate_versions(
         entries
     )
 
+    after_count = len(entries)
+
+    print()
+    print(
+        f"🔎 去重前：{before_count}"
+    )
+
+    print(
+        f"🔎 去重后：{after_count}"
+    )
+
     # --------------------------------------------------------
-    # ⚠️ 这里故意没有调用 keep_latest_versions()
-    #
-    # 因此同一个插件的所有版本都会保留。
-    #
-    # 例如：
-    #
-    # ~48
-    # ~50
-    #
-    # 两个都会进入 Packages。
+    # 微信扩展版本检查
     # --------------------------------------------------------
+
+    wechat_package = (
+        "com.netskao.wechatextension"
+    )
+
+    wechat_versions = check_plugin_versions(
+        entries,
+        wechat_package
+    )
+
+    print()
+    print(
+        "🔍 微信扩展最终版本："
+    )
+
+    if wechat_versions:
+
+        for version in wechat_versions:
+
+            print(
+                f"   • {version}"
+            )
+
+    else:
+
+        print(
+            "   ⚠️ 没有找到微信扩展"
+        )
+
+    # --------------------------------------------------------
+    # 强制检查 ~48 / ~50
+    # --------------------------------------------------------
+
+    required_wechat_versions = [
+        "1.1-2~48",
+        "1.1-2~50"
+    ]
+
+    if (
+        "1.1-2~48" in wechat_versions
+        and
+        "1.1-2~50" in wechat_versions
+    ):
+
+        print()
+        print(
+            "✅ 微信扩展 ~48 和 ~50 均保留"
+        )
+
+    else:
+
+        print()
+        print(
+            "⚠️ 当前微信扩展没有同时检测到 ~48 和 ~50"
+        )
+
+        print(
+            "   当前版本：",
+            wechat_versions
+        )
+
+        print(
+            "   这不会影响其他插件生成"
+        )
 
     # --------------------------------------------------------
     # 排序
@@ -967,7 +1132,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # Packages
+    # 生成 Packages
     # --------------------------------------------------------
 
     generate_packages(
@@ -977,6 +1142,55 @@ def main():
     print(
         "✅ Packages"
     )
+
+    # --------------------------------------------------------
+    # 验证 Packages
+    # --------------------------------------------------------
+
+    if wechat_versions:
+
+        verified = verify_packages_file(
+            wechat_package,
+            wechat_versions
+        )
+
+        if not verified:
+
+            print()
+            print(
+                "❌ Packages 生成验证失败"
+            )
+
+            raise SystemExit(1)
+
+    # --------------------------------------------------------
+    # 再次验证微信 ~48 / ~50
+    # --------------------------------------------------------
+
+    if (
+        "1.1-2~48" in wechat_versions
+        and
+        "1.1-2~50" in wechat_versions
+    ):
+
+        verified_wechat = verify_packages_file(
+            wechat_package,
+            required_wechat_versions
+        )
+
+        if not verified_wechat:
+
+            print()
+            print(
+                "❌ 微信扩展旧版本没有正确写入 Packages"
+            )
+
+            raise SystemExit(1)
+
+        print()
+        print(
+            "🎉 微信扩展多版本验证成功"
+        )
 
     # --------------------------------------------------------
     # Packages.gz / Packages.bz2
