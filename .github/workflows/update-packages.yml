@@ -2,21 +2,14 @@ name: Update Packages
 
 on:
   push:
-    branches:
-      - main
     paths:
       - "debs/**"
       - "generate_packages.py"
       - ".github/workflows/update-packages.yml"
-
   workflow_dispatch:
 
 permissions:
   contents: write
-
-concurrency:
-  group: update-packages
-  cancel-in-progress: false
 
 jobs:
   update-packages:
@@ -33,21 +26,16 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Install dpkg
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y dpkg
-
-      - name: Sync latest main
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
 
       - name: Generate Packages
         run: |
           python3 generate_packages.py
 
-      - name: Commit Packages
+      - name: Commit and Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -55,24 +43,12 @@ jobs:
           git add Packages Packages.gz Packages.bz2 Packages.json Release
 
           if git diff --cached --quiet; then
-            echo "No changes"
+            echo "No changes to commit."
             exit 0
           fi
 
           git commit -m "Update Packages"
 
-          for i in 1 2 3 4 5; do
-            git fetch origin main
-            git rebase origin/main
+          git pull --rebase origin main
 
-            if git push origin HEAD:main; then
-              echo "Push succeeded"
-              exit 0
-            fi
-
-            echo "Push failed, retrying..."
-            sleep 3
-          done
-
-          echo "Push failed after 5 attempts"
-          exit 1
+          git push origin main
