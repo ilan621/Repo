@@ -235,7 +235,7 @@ SHA256: 5073ef47b1e5266c24890f57b97bf3e86d311617977c08cdbbbd406a014e4fe1
 Package: com.iosdump.appdata
 Name: AppData
 Version: 2.7.1
-Architecture: iphoneos-arm64
+Architecture: iphoneos-arm64e
 Description: 在主屏幕查看应用数据与管理应用
 Maintainer: iosdump
 Author: iosdump
@@ -249,7 +249,7 @@ SHA256: dfcb80c6334469c93fbea92f5be5f77670068cbbd1a8c691464ae4ed4e373905
 Package: com.iosdump.appdata
 Name: AppData
 Version: 2.6.9
-Architecture: iphoneos-arm64
+Architecture: iphoneos-arm64e
 Description: 在主屏幕查看应用数据与管理应用
 Maintainer: iosdump
 Author: iosdump

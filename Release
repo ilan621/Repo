@@ -5,14 +5,14 @@ Codename: stable
 Architectures: iphoneos-arm64 iphoneos-arm64e
 Components: main
 Description: ilan RootHide Repository
-Date: Thu, 27 Aug 2026 04:16:58 GMT
+Date: Thu, 27 Aug 2026 05:04:36 GMT
 
 MD5Sum:
- d64f8f6db76dc7a39c89c4dcd0fa7959 22576 Packages
- 81aae2ffe994108d1e508b1eacbe4ea0 6972 Packages.gz
- 589bcc9c2024f9d9d50a3db580cbf058 6591 Packages.bz2
+ d8073003cd489f5060f9a2b726d44edf 22578 Packages
+ d8b78de5693527fbb1c05f3de2444d23 6968 Packages.gz
+ 56ddff5066a0f743b076c133e9e9ada6 6605 Packages.bz2
 
 SHA256:
- 0e8154344b5527620b708e637b650f35ccfa3573b65a005269d2fd55d9d9c193 22576 Packages
- b15301dc0158e46800d2e2fc7ade30251d5b5aeb9f53a3ce29f44f97f37b3b3e 6972 Packages.gz
- 49da37444cf362446dab8e5a23de921016fe8e8e245d277d561a6423d97a254f 6591 Packages.bz2
+ 3799868a8b30b4ca27e0467afacba261900b9f6f3035db71c7339e8ff2f8a7b3 22578 Packages
+ aa3b7bebf2702c929f0a0a39a88361b28f6b8cac1e4ffa4002f64f986be090c9 6968 Packages.gz
+ 911f603f902682f60e85fca6d43d10aeb947389a7ef186c5334333550bc9d975 6605 Packages.bz2
