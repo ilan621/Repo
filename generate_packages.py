@@ -3,14 +3,13 @@ import bz2
 import json
 import hashlib
 import subprocess
+import re
 from pathlib import Path
 from email.utils import formatdate
 from functools import cmp_to_key
 
 
 DEB_DIR = Path("debs")
-
-# 更新日志目录
 CHANGELOG_DIR = Path("changelogs")
 
 OUTPUT = Path("Packages")
@@ -31,7 +30,6 @@ def parse_control(data):
         if not line.strip():
             continue
 
-        # Debian control 续行
         if line.startswith((" ", "\t")) and current_key:
             result[current_key] += "\n" + line.strip()
             continue
@@ -67,10 +65,6 @@ def debian_version_compare(a, b):
 
     while ia < len(a) or ib < len(b):
 
-        # ----------------------------------------------------
-        # ~ 特殊规则
-        # ----------------------------------------------------
-
         if ia < len(a) and a[ia] == "~":
             if ib >= len(b) or b[ib] != "~":
                 return -1
@@ -78,10 +72,6 @@ def debian_version_compare(a, b):
         if ib < len(b) and b[ib] == "~":
             if ia >= len(a) or a[ia] != "~":
                 return 1
-
-        # ----------------------------------------------------
-        # 非数字部分
-        # ----------------------------------------------------
 
         while ia < len(a) and not a[ia].isdigit():
 
@@ -141,10 +131,6 @@ def debian_version_compare(a, b):
             if ia < len(a):
                 ia += 1
 
-        # ----------------------------------------------------
-        # ~
-        # ----------------------------------------------------
-
         if ia < len(a) and a[ia] == "~":
 
             if ib >= len(b) or b[ib] != "~":
@@ -156,10 +142,6 @@ def debian_version_compare(a, b):
 
         if ib < len(b) and b[ib] == "~":
             return 1
-
-        # ----------------------------------------------------
-        # 数字部分
-        # ----------------------------------------------------
 
         if (
             ia < len(a)
@@ -187,10 +169,6 @@ def debian_version_compare(a, b):
                 return 1 if na > nb else -1
 
             continue
-
-        # ----------------------------------------------------
-        # 一个结束
-        # ----------------------------------------------------
 
         if ia >= len(a) and ib >= len(b):
             break
@@ -242,7 +220,7 @@ def read_deb_control(path):
 
 
 # ============================================================
-# 读取原来的 packages.json 自定义信息
+# 读取旧版 packages.json
 # ============================================================
 
 def load_custom_metadata():
@@ -250,8 +228,7 @@ def load_custom_metadata():
     if not PACKAGES_JSON.exists():
 
         print(
-            "ℹ️ 没有找到 packages.json，"
-            "使用 DEB 原始信息"
+            "ℹ️ 没有找到 packages.json，使用 DEB 原始信息"
         )
 
         return {}
@@ -297,42 +274,68 @@ def load_custom_metadata():
         if not package_id:
             continue
 
-        key = (
-            package_id,
-            version
-        )
-
-        result[key] = item
+        result[
+            (
+                package_id,
+                version
+            )
+        ] = item
 
     print(
-        f"✅ 读取自定义插件信息："
-        f"{len(result)} 个版本"
+        f"✅ 读取自定义插件信息：{len(result)} 个版本"
     )
 
     return result
 
 
 # ============================================================
-# 读取更新日志
-#
-# 一个插件一个 TXT
+# 判断是否为版本号
 #
 # 例如：
+# 1.1-2~50
+# 1.1-2~48
+# 2.0
+# 1.0.1
+# ============================================================
+
+def is_version_line(line):
+
+    line = line.strip()
+
+    if not line:
+        return False
+
+    # 更新内容不能被识别为版本
+    if line.startswith("-"):
+        return False
+
+    if line.startswith("•"):
+        return False
+
+    if line.startswith("*"):
+        return False
+
+    # 必须包含数字
+    if not any(c.isdigit() for c in line):
+        return False
+
+    # Debian 常见版本字符
+    return bool(
+        re.fullmatch(
+            r"[0-9][0-9A-Za-z.+:~_-]*",
+            line
+        )
+    )
+
+
+# ============================================================
+# 读取一个插件的更新日志
+#
+# 一个插件对应一个 TXT
 #
 # changelogs/
 # └── com.netskao.wechatextension.txt
 #
-# 内容：
-#
-# 1.1-2~51
-# - 修复问题
-# - 优化功能
-#
-# 1.1-2~50
-# - 修复问题
-#
-# 1.1-2~48
-# - 首次发布
 # ============================================================
 
 def load_changelog(package_id):
@@ -346,8 +349,7 @@ def load_changelog(package_id):
     if not path.exists():
 
         print(
-            f"  ℹ️ 没有找到更新日志："
-            f"{path}"
+            f"  ℹ️ 没有找到更新日志：{path}"
         )
 
         return {}
@@ -355,28 +357,25 @@ def load_changelog(package_id):
     try:
 
         content = path.read_text(
-            encoding="utf-8"
+            encoding="utf-8-sig"
         )
 
     except Exception as e:
 
         print(
-            f"  ⚠️ 更新日志读取失败："
-            f"{path}"
+            f"  ❌ 更新日志读取失败：{path}"
         )
 
         print(e)
 
         return {}
 
-    lines = content.splitlines()
-
     result = {}
 
     current_version = None
     current_lines = []
 
-    def save_current():
+    def save_version():
 
         nonlocal current_version
         nonlocal current_lines
@@ -388,81 +387,64 @@ def load_changelog(package_id):
 
         for line in current_lines:
 
-            line = line.rstrip()
+            line = line.strip()
 
-            if not line.strip():
+            if not line:
                 continue
 
             cleaned.append(line)
 
         result[current_version] = cleaned
 
-    for line in lines:
+    for raw_line in content.splitlines():
 
-        stripped = line.strip()
+        line = raw_line.strip()
 
         # 空行
-        if not stripped:
+        if not line:
 
             if current_version:
                 current_lines.append("")
 
             continue
 
-        # ----------------------------------------------------
-        # 判断是否为版本标题
-        #
-        # 例如：
-        # 1.1-2~51
-        # 1.1-2~50
-        # 1.1-2~48
-        #
-        # 不强制限定版本格式
-        # 只要这一行不像更新内容，就可以作为版本标题
-        # ----------------------------------------------------
+        # 版本标题
+        if is_version_line(line):
 
-        is_version_line = False
+            save_version()
 
-        if (
-            not stripped.startswith("-")
-            and
-            not stripped.startswith("•")
-            and
-            not stripped.startswith("*")
-        ):
-
-            # 常见 Debian 版本至少包含数字
-            if any(char.isdigit() for char in stripped):
-
-                is_version_line = True
-
-        if is_version_line:
-
-            save_current()
-
-            current_version = stripped
+            current_version = line
             current_lines = []
 
             continue
 
-        # ----------------------------------------------------
         # 更新内容
-        # ----------------------------------------------------
-
         if current_version:
 
-            current_lines.append(
-                stripped
-            )
+            current_lines.append(line)
 
     # 保存最后一个版本
-    save_current()
+    save_version()
 
+    print()
     print(
-        f"  ✅ 更新日志："
-        f"{package_id} "
-        f"共 {len(result)} 个版本"
+        f"  📝 读取更新日志：{package_id}"
     )
+
+    if result:
+
+        for version, changes in result.items():
+
+            print(
+                f"     {version}: "
+                f"{len(changes)} 条"
+            )
+
+    else:
+
+        print(
+            "     ⚠️ 没有解析到任何版本"
+        )
 
     return result
 
@@ -532,10 +514,6 @@ def make_entry(
 
         return None
 
-    # --------------------------------------------------------
-    # 原始 DEB 信息
-    # --------------------------------------------------------
-
     entry = {}
 
     fields = [
@@ -560,7 +538,7 @@ def make_entry(
             entry[field] = control[field]
 
     # --------------------------------------------------------
-    # Package + Version 匹配自定义信息
+    # 自定义 metadata
     # --------------------------------------------------------
 
     custom = custom_metadata.get(
@@ -571,10 +549,7 @@ def make_entry(
         {}
     )
 
-    # --------------------------------------------------------
-    # 兼容以前只有 Package 的 metadata
-    # --------------------------------------------------------
-
+    # 兼容旧 metadata
     if not custom:
 
         candidates = []
@@ -592,13 +567,8 @@ def make_entry(
             custom = candidates[0][1]
 
             print(
-                f"  ℹ️ 使用兼容 metadata："
-                f"{package_id}"
+                f"  ℹ️ 使用兼容 metadata：{package_id}"
             )
-
-    # --------------------------------------------------------
-    # 自定义 Package
-    # --------------------------------------------------------
 
     custom_package = (
         custom.get("package")
@@ -609,10 +579,6 @@ def make_entry(
     if custom_package:
         entry["Package"] = custom_package
 
-    # --------------------------------------------------------
-    # 自定义名称
-    # --------------------------------------------------------
-
     custom_name = (
         custom.get("name")
         or custom.get("Name")
@@ -621,10 +587,6 @@ def make_entry(
 
     if custom_name:
         entry["Name"] = custom_name
-
-    # --------------------------------------------------------
-    # 自定义版本
-    # --------------------------------------------------------
 
     custom_version = (
         custom.get("version")
@@ -652,12 +614,6 @@ def make_entry(
                 f"     JSON: {custom_version}"
             )
 
-            entry["Version"] = version
-
-    # --------------------------------------------------------
-    # 作者
-    # --------------------------------------------------------
-
     custom_author = (
         custom.get("author")
         or custom.get("Author")
@@ -667,10 +623,6 @@ def make_entry(
     if custom_author:
         entry["Author"] = custom_author
 
-    # --------------------------------------------------------
-    # 架构
-    # --------------------------------------------------------
-
     custom_architecture = (
         custom.get("architecture")
         or custom.get("Architecture")
@@ -679,10 +631,6 @@ def make_entry(
 
     if custom_architecture:
         entry["Architecture"] = custom_architecture
-
-    # --------------------------------------------------------
-    # 中文描述
-    # --------------------------------------------------------
 
     custom_description = (
         custom.get("description")
@@ -711,54 +659,42 @@ def make_entry(
 
     # --------------------------------------------------------
     # 更新日志
-    #
-    # 一个插件对应一个 TXT
-    # 然后根据当前 Version 自动提取
     # --------------------------------------------------------
 
-    changelog = load_changelog(
+    changelogs = load_changelog(
         package_id
     )
 
-    current_changelog = changelog.get(
+    # 当前版本
+    current_changelog = changelogs.get(
         version,
         []
     )
 
-    # --------------------------------------------------------
-    # 给 Packages.json 使用
-    # --------------------------------------------------------
-
+    # 当前版本更新日志
     entry["_Changelog"] = current_changelog
 
-    # --------------------------------------------------------
-    # 保存完整版本更新日志
-    #
-    # 方便以后详情页面显示全部版本
-    # --------------------------------------------------------
-
-    entry["_Changelogs"] = changelog
+    # 所有版本更新日志
+    entry["_Changelogs"] = changelogs
 
     if current_changelog:
 
         print(
-            f"  📝 {version} 更新日志："
+            f"  ✅ 匹配 {version} 更新日志："
             f"{len(current_changelog)} 条"
         )
 
     else:
 
         print(
-            f"  ℹ️ {version} 没有对应更新日志"
+            f"  ⚠️ {version} 没有对应更新日志"
         )
 
     return entry
 
 
 # ============================================================
-# 只删除完全相同的 Package + Version
-#
-# 不同版本绝对不会删除
+# 去除完全重复版本
 # ============================================================
 
 def remove_duplicate_versions(entries):
@@ -798,7 +734,7 @@ def remove_duplicate_versions(entries):
 
             print()
             print(
-                "⚠️ 发现完全重复的 Package + Version + Architecture:"
+                "⚠️ 发现完全重复版本:"
             )
 
             print(
@@ -811,7 +747,6 @@ def remove_duplicate_versions(entries):
                 entry.get("Filename")
             )
 
-            # 保留后扫描到的文件
             grouped[key] = entry
 
     return list(
@@ -821,9 +756,6 @@ def remove_duplicate_versions(entries):
 
 # ============================================================
 # 排序
-#
-# 同一个插件的所有版本全部保留
-# 最新版本排前面
 # ============================================================
 
 def sort_entries(entries):
@@ -878,7 +810,7 @@ def sort_entries(entries):
 
 
 # ============================================================
-# 检查指定插件版本
+# 检查插件版本
 # ============================================================
 
 def check_plugin_versions(
@@ -905,12 +837,6 @@ def check_plugin_versions(
 
 # ============================================================
 # 生成 Packages
-#
-# 注意：
-# _Changelog / _Changelogs
-# 不写入标准 Packages
-#
-# 它们只保存到 Packages.json
 # ============================================================
 
 def generate_packages(entries):
@@ -926,7 +852,7 @@ def generate_packages(entries):
 
             for key, value in entry.items():
 
-                # 自定义内部字段
+                # 内部字段不能进入 Debian Packages
                 if key.startswith("_"):
                     continue
 
@@ -935,7 +861,6 @@ def generate_packages(entries):
 
                 value = str(value)
 
-                # Debian 多行 Description
                 if (
                     key == "Description"
                     and "\n" in value
@@ -974,7 +899,7 @@ def generate_packages(entries):
 
 
 # ============================================================
-# 验证 Packages 文件
+# 验证 Packages
 # ============================================================
 
 def verify_packages_file(
@@ -994,11 +919,11 @@ def verify_packages_file(
         encoding="utf-8"
     )
 
-    missing = []
-
     blocks = content.split(
         "\n\n"
     )
+
+    missing = []
 
     for version in required_versions:
 
@@ -1016,6 +941,7 @@ def verify_packages_file(
                 break
 
         if not found:
+
             missing.append(version)
 
     if missing:
@@ -1036,20 +962,14 @@ def verify_packages_file(
     print()
     print(
         f"✅ Packages 已确认包含 "
-        f"{package_id} 的所有指定版本:"
+        f"{package_id} 的所有指定版本"
     )
-
-    for version in required_versions:
-
-        print(
-            f"   ✅ {version}"
-        )
 
     return True
 
 
 # ============================================================
-# 压缩 Packages
+# 压缩
 # ============================================================
 
 def generate_compressed():
@@ -1072,14 +992,7 @@ def generate_compressed():
 
 
 # ============================================================
-# 清理内部字段
-#
-# Packages.json 可以保存：
-#
-# changelog
-# changelogs
-#
-# 但是不保存内部下划线字段
+# 清理 JSON 字段
 # ============================================================
 
 def clean_entry_for_json(entry):
@@ -1135,7 +1048,7 @@ def generate_packages_json(entries):
 
 
 # ============================================================
-# 生成 Release
+# Release
 # ============================================================
 
 def generate_release():
@@ -1221,10 +1134,6 @@ def main():
             exist_ok=True
         )
 
-    # --------------------------------------------------------
-    # 更新日志目录
-    # --------------------------------------------------------
-
     if not CHANGELOG_DIR.exists():
 
         CHANGELOG_DIR.mkdir(
@@ -1236,27 +1145,18 @@ def main():
             "📁 已创建 changelogs/"
         )
 
-    # --------------------------------------------------------
-    # 读取网页自定义信息
-    # --------------------------------------------------------
-
     custom_metadata = (
         load_custom_metadata()
     )
 
     entries = []
 
-    # --------------------------------------------------------
-    # 扫描 DEB
-    # --------------------------------------------------------
-
     deb_files = sorted(
         DEB_DIR.rglob("*.deb")
     )
 
     print(
-        f"📦 找到 DEB："
-        f"{len(deb_files)} 个"
+        f"📦 找到 DEB：{len(deb_files)} 个"
     )
 
     print()
@@ -1283,10 +1183,6 @@ def main():
                 entry.get("Version")
             )
 
-    # --------------------------------------------------------
-    # 如果没有有效 DEB
-    # --------------------------------------------------------
-
     if not entries:
 
         print()
@@ -1295,10 +1191,6 @@ def main():
         )
 
         raise SystemExit(1)
-
-    # --------------------------------------------------------
-    # 去除完全重复版本
-    # --------------------------------------------------------
 
     before_count = len(entries)
 
@@ -1318,7 +1210,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 微信扩展版本检查
+    # 微信扩展检查
     # --------------------------------------------------------
 
     wechat_package = (
@@ -1349,10 +1241,6 @@ def main():
             "   ⚠️ 没有找到微信扩展"
         )
 
-    # --------------------------------------------------------
-    # 强制检查 ~48 / ~50
-    # --------------------------------------------------------
-
     required_wechat_versions = [
         "1.1-2~48",
         "1.1-2~50"
@@ -1376,15 +1264,6 @@ def main():
             "⚠️ 当前微信扩展没有同时检测到 ~48 和 ~50"
         )
 
-        print(
-            "   当前版本：",
-            wechat_versions
-        )
-
-        print(
-            "   这不会影响其他插件生成"
-        )
-
     # --------------------------------------------------------
     # 排序
     # --------------------------------------------------------
@@ -1395,12 +1274,11 @@ def main():
 
     print()
     print(
-        f"📋 最终插件版本数量："
-        f"{len(entries)}"
+        f"📋 最终插件版本数量：{len(entries)}"
     )
 
     # --------------------------------------------------------
-    # 生成 Packages
+    # Packages
     # --------------------------------------------------------
 
     generate_packages(
@@ -1412,7 +1290,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 验证 Packages
+    # 验证
     # --------------------------------------------------------
 
     if wechat_versions:
@@ -1424,16 +1302,7 @@ def main():
 
         if not verified:
 
-            print()
-            print(
-                "❌ Packages 生成验证失败"
-            )
-
             raise SystemExit(1)
-
-    # --------------------------------------------------------
-    # 再次验证微信 ~48 / ~50
-    # --------------------------------------------------------
 
     if (
         "1.1-2~48" in wechat_versions
@@ -1448,11 +1317,6 @@ def main():
 
         if not verified_wechat:
 
-            print()
-            print(
-                "❌ 微信扩展旧版本没有正确写入 Packages"
-            )
-
             raise SystemExit(1)
 
         print()
@@ -1461,7 +1325,7 @@ def main():
         )
 
     # --------------------------------------------------------
-    # Packages.gz / Packages.bz2
+    # 压缩
     # --------------------------------------------------------
 
     generate_compressed()
