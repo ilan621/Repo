@@ -13,7 +13,9 @@
     "Installed-Size": "11908",
     "Filename": "debs/抖音图层_2.6.2.deb",
     "Size": "10026260",
-    "SHA256": "5f0c797ecebff9752e03839eefcf13018a32ec617b9251236023c390b80f548f"
+    "SHA256": "5f0c797ecebff9752e03839eefcf13018a32ec617b9251236023c390b80f548f",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "cn.llld.biaoji",
@@ -28,7 +30,9 @@
     "Installed-Size": "164",
     "Filename": "debs/截图标记-rootless_1.6定制包-arm64e.deb",
     "Size": "52720",
-    "SHA256": "d2be9e34764acefc9b9a8716de76fd96218ac366680749e3f966786e52bf0edc"
+    "SHA256": "d2be9e34764acefc9b9a8716de76fd96218ac366680749e3f966786e52bf0edc",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "cn.llld.snapshottool",
@@ -43,7 +47,9 @@
     "Installed-Size": "1092",
     "Filename": "debs/cn.llld.snapshottool_4.4_iphoneos-arm64e.deb",
     "Size": "524694",
-    "SHA256": "79ff4e191639ea89ee045d003bd176c6c74b10b184a478d79cf86ad198ac6ba7"
+    "SHA256": "79ff4e191639ea89ee045d003bd176c6c74b10b184a478d79cf86ad198ac6ba7",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "cn.zqbb.jailfools",
@@ -58,7 +64,9 @@
     "Installed-Size": "16700",
     "Filename": "debs/cn.zqbb.jailfools_5.2.1_iphoneos-arm64e.deb",
     "Size": "4600858",
-    "SHA256": "cb68b669ce9f8fd79f0faf327c8b7d5d609824df9506285dcd10da4c621dcc8a"
+    "SHA256": "cb68b669ce9f8fd79f0faf327c8b7d5d609824df9506285dcd10da4c621dcc8a",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "cn.zqbb.jailfools",
@@ -73,7 +81,9 @@
     "Installed-Size": "16628",
     "Filename": "debs/cn.zqbb.jailfools_5.0.3_iphoneos-arm64e.deb",
     "Size": "4535612",
-    "SHA256": "fe3e9594296fba83442a25249680c8715a4bcda8662399456d0d3d35cde3b651"
+    "SHA256": "fe3e9594296fba83442a25249680c8715a4bcda8662399456d0d3d35cde3b651",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "cn.zqbb.jailfools",
@@ -88,7 +98,9 @@
     "Installed-Size": "16640",
     "Filename": "debs/cn.zqbb.jailfools_4.3-253_iphoneos-arm64e.deb",
     "Size": "4581304",
-    "SHA256": "044ac01b2789ba101a57e43532e80447e057628ef36e753da3b5ca2594241a21"
+    "SHA256": "044ac01b2789ba101a57e43532e80447e057628ef36e753da3b5ca2594241a21",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.25mao.BubbleBox",
@@ -102,7 +114,9 @@
     "Depends": "firmware (>= 5.0), mobilesubstrate",
     "Filename": "debs/com.25mao.bubblebox_1.0-7_iphoneos-arm64e.deb",
     "Size": "4879196",
-    "SHA256": "f9823783fcb19a45e0429793fba075f8609bdb665e620296743106324f58df2d"
+    "SHA256": "f9823783fcb19a45e0429793fba075f8609bdb665e620296743106324f58df2d",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.25mao.leftpan.rootless",
@@ -116,7 +130,9 @@
     "Depends": "mobilesubstrate, preferenceloader, com.opa334.altlist (>=1.0.4)",
     "Filename": "debs/com.25mao.leftpan.roothide_2.0_iphoneos-arm64e.deb",
     "Size": "40572",
-    "SHA256": "bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc"
+    "SHA256": "bd869c1d71c0c81ea277c387161afe7c683b366654d4cb071b87a6935771fabc",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.25mao.wcplugins.rootless",
@@ -130,7 +146,9 @@
     "Depends": "firmware (>= 5.0)",
     "Filename": "debs/com.25mao.wcplugins.rootless_0.1-6_iphoneos-arm64e.deb",
     "Size": "17980",
-    "SHA256": "20a13f073ff9a4fbed70eeb556c1919be8ff9bd98ad7c6f14dbfa835ea838305"
+    "SHA256": "20a13f073ff9a4fbed70eeb556c1919be8ff9bd98ad7c6f14dbfa835ea838305",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.Axs.floating-view",
@@ -145,7 +163,9 @@
     "Installed-Size": "2700",
     "Filename": "debs/com.axs.floating-view_1.6.0-6_iphoneos-arm64e.deb",
     "Size": "1774688",
-    "SHA256": "919d760dcca7949a4821e70ea141e34303efb4372ec2335880c17a1d3f17a1bf"
+    "SHA256": "919d760dcca7949a4821e70ea141e34303efb4372ec2335880c17a1d3f17a1bf",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.HBWechatHelper.ailun",
@@ -159,7 +179,9 @@
     "Depends": "mobilesubstrate",
     "Filename": "debs/黄白助手2.1-5_无根.deb",
     "Size": "19740558",
-    "SHA256": "84e049e595a6006b0ba1a24c17e081bc9d6d2079f5d28893b9794b68a75c4a83"
+    "SHA256": "84e049e595a6006b0ba1a24c17e081bc9d6d2079f5d28893b9794b68a75c4a83",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.gtok",
@@ -173,7 +195,9 @@
     "Depends": "firmware (>= 14.0), mobilesubstrate | substitute | libhooker | ellekit",
     "Filename": "debs/com.gtok_1.7_iphoneos-arm64e.deb",
     "Size": "1712722",
-    "SHA256": "9f5f4c637f190dd2f569fb6c817b804eb947cb909be7a02afceb06194544d36f"
+    "SHA256": "9f5f4c637f190dd2f569fb6c817b804eb947cb909be7a02afceb06194544d36f",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.huami.WCPulse",
@@ -187,7 +211,9 @@
     "Depends": "mobilesubstrate (>= 0.9.5000)",
     "Filename": "debs/WCPulse_1.7-2-arm64e.deb",
     "Size": "4919944",
-    "SHA256": "f0a7b6cee3a426ec274b969f16861b9bceeaee53111a5dab1b077afaf8116f4c"
+    "SHA256": "f0a7b6cee3a426ec274b969f16861b9bceeaee53111a5dab1b077afaf8116f4c",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.huami.WCPulse",
@@ -201,7 +227,9 @@
     "Depends": "mobilesubstrate (>= 0.9.5000)",
     "Filename": "debs/WCPulse_1.7-1-arm64e.deb",
     "Size": "4892374",
-    "SHA256": "c10f40785dd96dd8fa12494d579ea6ca7278d55277bdcfeaa09ced389db6a0fd"
+    "SHA256": "c10f40785dd96dd8fa12494d579ea6ca7278d55277bdcfeaa09ced389db6a0fd",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.huami.WCPulse",
@@ -215,7 +243,9 @@
     "Depends": "mobilesubstrate (>= 0.9.5000)",
     "Filename": "debs/WCPulse_1.6-9-arm64e.deb",
     "Size": "4850944",
-    "SHA256": "178c3cc0916e0b6d3a718f1a7a8de8c170a1828b7ae2defc5f41ea53ed437cce"
+    "SHA256": "178c3cc0916e0b6d3a718f1a7a8de8c170a1828b7ae2defc5f41ea53ed437cce",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.huami.WCPulse",
@@ -229,7 +259,9 @@
     "Depends": "mobilesubstrate (>= 0.9.5000)",
     "Filename": "debs/WCPulse_1.6-8-arm64e.deb",
     "Size": "6135682",
-    "SHA256": "c1caa738b356bf061c8b6fe42e0fbec61dacb0d7048e3b9d59d3e1e3c911b28c"
+    "SHA256": "c1caa738b356bf061c8b6fe42e0fbec61dacb0d7048e3b9d59d3e1e3c911b28c",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.huami.WCPulse",
@@ -243,7 +275,9 @@
     "Depends": "mobilesubstrate (>= 0.9.5000)",
     "Filename": "debs/WCPulse_1.6-7-arm64e.deb",
     "Size": "6107278",
-    "SHA256": "5073ef47b1e5266c24890f57b97bf3e86d311617977c08cdbbbd406a014e4fe1"
+    "SHA256": "5073ef47b1e5266c24890f57b97bf3e86d311617977c08cdbbbd406a014e4fe1",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.appdata",
@@ -258,7 +292,9 @@
     "Conflicts": "com.netskao.appdatas, com.netskao.appdata, cn.zqbb.appdata, com.fouadraheb.appdata",
     "Filename": "debs/com.iosdump.appdata_2.7.1_iphoneos-arm64e.deb",
     "Size": "3944654",
-    "SHA256": "dfcb80c6334469c93fbea92f5be5f77670068cbbd1a8c691464ae4ed4e373905"
+    "SHA256": "dfcb80c6334469c93fbea92f5be5f77670068cbbd1a8c691464ae4ed4e373905",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.appdata",
@@ -273,7 +309,9 @@
     "Conflicts": "com.netskao.appdatas, com.netskao.appdata, cn.zqbb.appdata, com.fouadraheb.appdata",
     "Filename": "debs/com.iosdump.appdata_2.6.9_iphoneos-arm64e.deb",
     "Size": "3931882",
-    "SHA256": "0d073563e9c8e2f14cb4d520f69ed8cb55fbb4b6b8d7bdd0f71af756c8168d9a"
+    "SHA256": "0d073563e9c8e2f14cb4d520f69ed8cb55fbb4b6b8d7bdd0f71af756c8168d9a",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.freegrid",
@@ -288,7 +326,9 @@
     "Installed-Size": "204",
     "Filename": "debs/com.iosdump.freegrid_0.0.1_iphoneos-arm64e.deb",
     "Size": "13756",
-    "SHA256": "371982b8adc93bf9432e3f61e651eb377b7c5a7582b6e42a628da54d9d94df99"
+    "SHA256": "371982b8adc93bf9432e3f61e651eb377b7c5a7582b6e42a628da54d9d94df99",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.shellx",
@@ -304,7 +344,9 @@
     "Installed-Size": "6920",
     "Filename": "debs/com.iosdump.shellx_2.5.1_iphoneos-arm64e.deb",
     "Size": "3092682",
-    "SHA256": "df913635eb390a3f3734714771ec03bb81f7691602f5203c7eca77c41666fe13"
+    "SHA256": "df913635eb390a3f3734714771ec03bb81f7691602f5203c7eca77c41666fe13",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.shellx",
@@ -320,7 +362,9 @@
     "Installed-Size": "6652",
     "Filename": "debs/com.iosdump.shellx_2.4.6_iphoneos-arm64e.deb",
     "Size": "2885428",
-    "SHA256": "7047ec9184286d7e244a3fd7cf04cc6fb17871b75d1c2575ee4c8a94a64cf8c1"
+    "SHA256": "7047ec9184286d7e244a3fd7cf04cc6fb17871b75d1c2575ee4c8a94a64cf8c1",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.shellx",
@@ -336,7 +380,9 @@
     "Installed-Size": "6572",
     "Filename": "debs/com.iosdump.shellx_2.4.1_iphoneos-arm64e.deb",
     "Size": "2862880",
-    "SHA256": "2c9cb725e7f7aa86b617482a7fac52ec7f211b6c519875ea92dbe9bbe2b72ec9"
+    "SHA256": "2c9cb725e7f7aa86b617482a7fac52ec7f211b6c519875ea92dbe9bbe2b72ec9",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.shellx",
@@ -352,7 +398,9 @@
     "Installed-Size": "6476",
     "Filename": "debs/com.iosdump.shellx_2.3.1_iphoneos-arm64e.deb",
     "Size": "2839618",
-    "SHA256": "46ee99395ba18a10daa21dd40a99ed612038b7fe813b4352ebfc34c73a044c14"
+    "SHA256": "46ee99395ba18a10daa21dd40a99ed612038b7fe813b4352ebfc34c73a044c14",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.shellx",
@@ -368,7 +416,9 @@
     "Installed-Size": "4180",
     "Filename": "debs/com.iosdump.shellx_2.2.1_iphoneos-arm64e.deb",
     "Size": "988404",
-    "SHA256": "65b02306ded9d80a97b508ad95a7c2bc787aed5de281790165521349eb8a0f04"
+    "SHA256": "65b02306ded9d80a97b508ad95a7c2bc787aed5de281790165521349eb8a0f04",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.iosdump.shellx",
@@ -384,7 +434,9 @@
     "Installed-Size": "2788",
     "Filename": "debs/com.iosdump.shellx_2.1.1_iphoneos-arm64e.deb",
     "Size": "885052",
-    "SHA256": "19205c5f99a34d053ff86ae0c471b6eff451168d646c102f716f9750ffdf8dcc"
+    "SHA256": "19205c5f99a34d053ff86ae0c471b6eff451168d646c102f716f9750ffdf8dcc",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.lclrc.squidgesturepro",
@@ -400,7 +452,9 @@
     "Installed-Size": "6636",
     "Filename": "debs/com.lclrc.squidgesturepro_2.7.6_iphoneos-arm64e.deb",
     "Size": "5332220",
-    "SHA256": "7ea0b037500934c1b6c2693cc3b2bae10ec1f588413693d6c4dbd5f2a91c94ea"
+    "SHA256": "7ea0b037500934c1b6c2693cc3b2bae10ec1f588413693d6c4dbd5f2a91c94ea",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.netskao.qqnotiavatar",
@@ -415,7 +469,9 @@
     "Installed-Size": "236",
     "Filename": "debs/com.netskao.qqnotiavatar_1.2-3_iphoneos-arm64e.deb",
     "Size": "45516",
-    "SHA256": "07f9338e6ac9a9e11566bb04d5805ffb84459c30ef4e10bbf5ac482475c2dc86"
+    "SHA256": "07f9338e6ac9a9e11566bb04d5805ffb84459c30ef4e10bbf5ac482475c2dc86",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.netskao.storeswitchaccounts",
@@ -430,7 +486,9 @@
     "Installed-Size": "460",
     "Filename": "debs/com.netskao.storeswitchaccounts_1.1-4_iphoneos-arm64e.deb",
     "Size": "137600",
-    "SHA256": "86ebcf103a34acaddb2aa80c1c0888e13f43aa3b008e1abeedf2e10387b02c08"
+    "SHA256": "86ebcf103a34acaddb2aa80c1c0888e13f43aa3b008e1abeedf2e10387b02c08",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.netskao.wcdisablehotupdates",
@@ -445,7 +503,9 @@
     "Installed-Size": "72",
     "Filename": "debs/com.netskao.wcdisablehotupdates_1.1-3_iphoneos-arm64e.deb",
     "Size": "2176",
-    "SHA256": "1a7eef3b68bcd5003532df492d479f42cdcf41f2a45172536f6f9abd0f4e2cd5"
+    "SHA256": "1a7eef3b68bcd5003532df492d479f42cdcf41f2a45172536f6f9abd0f4e2cd5",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.netskao.wechatextension",
@@ -460,7 +520,9 @@
     "Installed-Size": "56952",
     "Filename": "debs/com.netskao.wechatextension_1.1-2~50_iphoneos-arm64e.deb",
     "Size": "41543126",
-    "SHA256": "4718673da6f5cbd5d541275641161b4c8769eb6bc5a02e6bc4687997ce2742b9"
+    "SHA256": "4718673da6f5cbd5d541275641161b4c8769eb6bc5a02e6bc4687997ce2742b9",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.netskao.wechatextension",
@@ -475,7 +537,9 @@
     "Installed-Size": "56748",
     "Filename": "debs/com.netskao.wechatextension_1.1-2~48_iphoneos-arm64e.deb",
     "Size": "41142808",
-    "SHA256": "f2857b0ae25c804a1168fb2103946f6b4cc850251d24bdae3f103eee8257f562"
+    "SHA256": "f2857b0ae25c804a1168fb2103946f6b4cc850251d24bdae3f103eee8257f562",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.opa334.trollstorelite",
@@ -489,7 +553,9 @@
     "Installed-Size": "3844",
     "Filename": "debs/com.opa334.trollstorelite_2.1.1-1_iphoneos-arm64e.deb",
     "Size": "1739500",
-    "SHA256": "a606e0576be5d508ff92a4d842b49698088889b85fb3ceeee43f4269ee03e376"
+    "SHA256": "a606e0576be5d508ff92a4d842b49698088889b85fb3ceeee43f4269ee03e376",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.squidforce.squidextender",
@@ -504,7 +570,9 @@
     "Installed-Size": "10136",
     "Filename": "debs/com.squidforce.squidextender_3.7.4_iphoneos-arm64e.deb",
     "Size": "6935890",
-    "SHA256": "ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac"
+    "SHA256": "ff41cd5405fa1000074558c194b8ca3898a3134ed71c02834a034e45943690ac",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.tencent.themebox",
@@ -518,7 +586,9 @@
     "Depends": "mobilesubstrate (>= 0.9.5000)",
     "Filename": "debs/主题盒子3.0.3_roothide（隐根）.deb",
     "Size": "9172256",
-    "SHA256": "a317aa75017c0f02b9c4bd27be2cb8eff765f3955692854c6a9c0ec1a437ff9f"
+    "SHA256": "a317aa75017c0f02b9c4bd27be2cb8eff765f3955692854c6a9c0ec1a437ff9f",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.copylogx",
@@ -533,7 +603,9 @@
     "Installed-Size": "1612",
     "Filename": "debs/com.wkk.copylogx_1.0-5_iphoneos-arm64e.deb",
     "Size": "215316",
-    "SHA256": "dcde5c3bd98d596d40d4ba01d5c4106688c929f4f7450eba196778c9e210c727"
+    "SHA256": "dcde5c3bd98d596d40d4ba01d5c4106688c929f4f7450eba196778c9e210c727",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.copylogx",
@@ -548,7 +620,9 @@
     "Installed-Size": "1596",
     "Filename": "debs/com.wkk.copylogx_1.0-4_iphoneos-arm64e.deb",
     "Size": "208370",
-    "SHA256": "2c3cecd052027331f8571388c8ce6bd1778890c4c1b491c0d84b751dfbad779a"
+    "SHA256": "2c3cecd052027331f8571388c8ce6bd1778890c4c1b491c0d84b751dfbad779a",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.copylogx",
@@ -563,7 +637,9 @@
     "Installed-Size": "1596",
     "Filename": "debs/com.wkk.copylogx_1.0-3_iphoneos-arm64e.deb",
     "Size": "207442",
-    "SHA256": "79e320e94b9af13a308414ff943d5fa39ae15472c5bdfc75ce248709c9b132f0"
+    "SHA256": "79e320e94b9af13a308414ff943d5fa39ae15472c5bdfc75ce248709c9b132f0",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.copylogx",
@@ -578,7 +654,9 @@
     "Installed-Size": "1512",
     "Filename": "debs/com.wkk.copylogx_1.0-2_iphoneos-arm64e.deb",
     "Size": "185706",
-    "SHA256": "ac3e170573948e294c8c445241817c6066e1ac57b29c3e6ab82a2acbc83f834a"
+    "SHA256": "ac3e170573948e294c8c445241817c6066e1ac57b29c3e6ab82a2acbc83f834a",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.keyboardx",
@@ -593,7 +671,9 @@
     "Installed-Size": "568",
     "Filename": "debs/com.wkk.keyboardx_1.1-0_iphoneos-arm64e.deb",
     "Size": "77762",
-    "SHA256": "cbd0ad027c11be81fd944877b7f6a1bb535fe9605182bb6475667f88dbabcecc"
+    "SHA256": "cbd0ad027c11be81fd944877b7f6a1bb535fe9605182bb6475667f88dbabcecc",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.keyboardx",
@@ -608,7 +688,9 @@
     "Installed-Size": "500",
     "Filename": "debs/com.wkk.keyboardx_1.0-6_iphoneos-arm64e.deb",
     "Size": "62204",
-    "SHA256": "03ed401ae51f042ae8278eeb57cfda9fd95fac20ede4dd63b6fe5c103d9581ef"
+    "SHA256": "03ed401ae51f042ae8278eeb57cfda9fd95fac20ede4dd63b6fe5c103d9581ef",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.wechatx",
@@ -623,7 +705,9 @@
     "Installed-Size": "15188",
     "Filename": "debs/com.wkk.wechatx_2.1-5_iphoneos-arm64e.deb",
     "Size": "3942390",
-    "SHA256": "816885329169a0efdb390a6da2c4a437b85548b334a69dfe6951fde31f38d07b"
+    "SHA256": "816885329169a0efdb390a6da2c4a437b85548b334a69dfe6951fde31f38d07b",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.wkk.wechatx",
@@ -638,7 +722,9 @@
     "Installed-Size": "15156",
     "Filename": "debs/com.wkk.wechatx_2.1-4_iphoneos-arm64e.deb",
     "Size": "3933094",
-    "SHA256": "474e64ef0c3b03e1634408817d018076f28b5b9723a60f5d72fecd75c45bc4ce"
+    "SHA256": "474e64ef0c3b03e1634408817d018076f28b5b9723a60f5d72fecd75c45bc4ce",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.xuuz.douyinhelper",
@@ -654,7 +740,9 @@
     "Homepage": "https://tc.uddz.cc/xuuz",
     "Filename": "debs/com.xuuz.douyinhelper_2.2-5_iphoneos-arm64.deb",
     "Size": "6803476",
-    "SHA256": "81a20162d307c60876e451bc290ddd8ad3e675e14a06d8dbfc0c168c58523071"
+    "SHA256": "81a20162d307c60876e451bc290ddd8ad3e675e14a06d8dbfc0c168c58523071",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "com.ylr.wcsurfacetrim",
@@ -669,7 +757,9 @@
     "Installed-Size": "272",
     "Filename": "debs/AD com.ylr.wcsurfacetrim_1.0_iphoneos-arm64e.deb",
     "Size": "87578",
-    "SHA256": "bbeb64d9403c7395c93233d3b3cae4123fea2b71a18d2f982b1263126997b37f"
+    "SHA256": "bbeb64d9403c7395c93233d3b3cae4123fea2b71a18d2f982b1263126997b37f",
+    "changelog": [],
+    "changelogs": {}
   },
   {
     "Package": "con.twigalaxy",
@@ -684,6 +774,8 @@
     "Provides": "con.twigalaxy",
     "Filename": "debs/con.twigalaxy_1.1.4_iphoneos-arm64e.deb",
     "Size": "435868",
-    "SHA256": "d7a62e8322c84334b07365b9bf8505fca4ae271167b8c99c01b9ba64baa4af75"
+    "SHA256": "d7a62e8322c84334b07365b9bf8505fca4ae271167b8c99c01b9ba64baa4af75",
+    "changelog": [],
+    "changelogs": {}
   }
 ]
