@@ -521,8 +521,19 @@
     "Filename": "debs/com.netskao.wechatextension_1.1-2~50_iphoneos-arm64e.deb",
     "Size": "41543126",
     "SHA256": "4718673da6f5cbd5d541275641161b4c8769eb6bc5a02e6bc4687997ce2742b9",
-    "changelog": [],
-    "changelogs": {}
+    "changelog": [
+      "- 修复已知问题",
+      "- 优化插件稳定性"
+    ],
+    "changelogs": {
+      "1.1-2~50": [
+        "- 修复已知问题",
+        "- 优化插件稳定性"
+      ],
+      "1.1-2~48": [
+        "- 首次发布"
+      ]
+    }
   },
   {
     "Package": "com.netskao.wechatextension",
@@ -538,8 +549,18 @@
     "Filename": "debs/com.netskao.wechatextension_1.1-2~48_iphoneos-arm64e.deb",
     "Size": "41142808",
     "SHA256": "f2857b0ae25c804a1168fb2103946f6b4cc850251d24bdae3f103eee8257f562",
-    "changelog": [],
-    "changelogs": {}
+    "changelog": [
+      "- 首次发布"
+    ],
+    "changelogs": {
+      "1.1-2~50": [
+        "- 修复已知问题",
+        "- 优化插件稳定性"
+      ],
+      "1.1-2~48": [
+        "- 首次发布"
+      ]
+    }
   },
   {
     "Package": "com.opa334.trollstorelite",
