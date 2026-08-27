@@ -10,6 +10,9 @@ from functools import cmp_to_key
 
 DEB_DIR = Path("debs")
 
+# 更新日志目录
+CHANGELOG_DIR = Path("changelogs")
+
 OUTPUT = Path("Packages")
 PACKAGES_JSON = Path("packages.json")
 GENERATED_JSON = Path("Packages.json")
@@ -239,7 +242,7 @@ def read_deb_control(path):
 
 
 # ============================================================
-# 读取自定义插件信息
+# 读取原来的 packages.json 自定义信息
 # ============================================================
 
 def load_custom_metadata():
@@ -304,6 +307,161 @@ def load_custom_metadata():
     print(
         f"✅ 读取自定义插件信息："
         f"{len(result)} 个版本"
+    )
+
+    return result
+
+
+# ============================================================
+# 读取更新日志
+#
+# 一个插件一个 TXT
+#
+# 例如：
+#
+# changelogs/
+# └── com.netskao.wechatextension.txt
+#
+# 内容：
+#
+# 1.1-2~51
+# - 修复问题
+# - 优化功能
+#
+# 1.1-2~50
+# - 修复问题
+#
+# 1.1-2~48
+# - 首次发布
+# ============================================================
+
+def load_changelog(package_id):
+
+    if not CHANGELOG_DIR.exists():
+
+        return {}
+
+    path = CHANGELOG_DIR / f"{package_id}.txt"
+
+    if not path.exists():
+
+        print(
+            f"  ℹ️ 没有找到更新日志："
+            f"{path}"
+        )
+
+        return {}
+
+    try:
+
+        content = path.read_text(
+            encoding="utf-8"
+        )
+
+    except Exception as e:
+
+        print(
+            f"  ⚠️ 更新日志读取失败："
+            f"{path}"
+        )
+
+        print(e)
+
+        return {}
+
+    lines = content.splitlines()
+
+    result = {}
+
+    current_version = None
+    current_lines = []
+
+    def save_current():
+
+        nonlocal current_version
+        nonlocal current_lines
+
+        if not current_version:
+            return
+
+        cleaned = []
+
+        for line in current_lines:
+
+            line = line.rstrip()
+
+            if not line.strip():
+                continue
+
+            cleaned.append(line)
+
+        result[current_version] = cleaned
+
+    for line in lines:
+
+        stripped = line.strip()
+
+        # 空行
+        if not stripped:
+
+            if current_version:
+                current_lines.append("")
+
+            continue
+
+        # ----------------------------------------------------
+        # 判断是否为版本标题
+        #
+        # 例如：
+        # 1.1-2~51
+        # 1.1-2~50
+        # 1.1-2~48
+        #
+        # 不强制限定版本格式
+        # 只要这一行不像更新内容，就可以作为版本标题
+        # ----------------------------------------------------
+
+        is_version_line = False
+
+        if (
+            not stripped.startswith("-")
+            and
+            not stripped.startswith("•")
+            and
+            not stripped.startswith("*")
+        ):
+
+            # 常见 Debian 版本至少包含数字
+            if any(char.isdigit() for char in stripped):
+
+                is_version_line = True
+
+        if is_version_line:
+
+            save_current()
+
+            current_version = stripped
+            current_lines = []
+
+            continue
+
+        # ----------------------------------------------------
+        # 更新内容
+        # ----------------------------------------------------
+
+        if current_version:
+
+            current_lines.append(
+                stripped
+            )
+
+    # 保存最后一个版本
+    save_current()
+
+    print(
+        f"  ✅ 更新日志："
+        f"{package_id} "
+        f"共 {len(result)} 个版本"
     )
 
     return result
@@ -551,6 +709,49 @@ def make_entry(
 
     entry["SHA256"] = sha256_file(path)
 
+    # --------------------------------------------------------
+    # 更新日志
+    #
+    # 一个插件对应一个 TXT
+    # 然后根据当前 Version 自动提取
+    # --------------------------------------------------------
+
+    changelog = load_changelog(
+        package_id
+    )
+
+    current_changelog = changelog.get(
+        version,
+        []
+    )
+
+    # --------------------------------------------------------
+    # 给 Packages.json 使用
+    # --------------------------------------------------------
+
+    entry["_Changelog"] = current_changelog
+
+    # --------------------------------------------------------
+    # 保存完整版本更新日志
+    #
+    # 方便以后详情页面显示全部版本
+    # --------------------------------------------------------
+
+    entry["_Changelogs"] = changelog
+
+    if current_changelog:
+
+        print(
+            f"  📝 {version} 更新日志："
+            f"{len(current_changelog)} 条"
+        )
+
+    else:
+
+        print(
+            f"  ℹ️ {version} 没有对应更新日志"
+        )
+
     return entry
 
 
@@ -704,6 +905,12 @@ def check_plugin_versions(
 
 # ============================================================
 # 生成 Packages
+#
+# 注意：
+# _Changelog / _Changelogs
+# 不写入标准 Packages
+#
+# 它们只保存到 Packages.json
 # ============================================================
 
 def generate_packages(entries):
@@ -718,6 +925,10 @@ def generate_packages(entries):
         for entry in entries:
 
             for key, value in entry.items():
+
+                # 自定义内部字段
+                if key.startswith("_"):
+                    continue
 
                 if value is None:
                     continue
@@ -785,14 +996,13 @@ def verify_packages_file(
 
     missing = []
 
+    blocks = content.split(
+        "\n\n"
+    )
+
     for version in required_versions:
 
-        package_block = False
         found = False
-
-        blocks = content.split(
-            "\n\n"
-        )
 
         for block in blocks:
 
@@ -802,7 +1012,6 @@ def verify_packages_file(
                 f"Version: {version}" in block
             ):
 
-                package_block = True
                 found = True
                 break
 
@@ -826,7 +1035,8 @@ def verify_packages_file(
 
     print()
     print(
-        f"✅ Packages 已确认包含 {package_id} 的所有指定版本:"
+        f"✅ Packages 已确认包含 "
+        f"{package_id} 的所有指定版本:"
     )
 
     for version in required_versions:
@@ -862,10 +1072,53 @@ def generate_compressed():
 
 
 # ============================================================
+# 清理内部字段
+#
+# Packages.json 可以保存：
+#
+# changelog
+# changelogs
+#
+# 但是不保存内部下划线字段
+# ============================================================
+
+def clean_entry_for_json(entry):
+
+    result = {}
+
+    for key, value in entry.items():
+
+        if key == "_Changelog":
+
+            result["changelog"] = value
+            continue
+
+        if key == "_Changelogs":
+
+            result["changelogs"] = value
+            continue
+
+        if key.startswith("_"):
+            continue
+
+        result[key] = value
+
+    return result
+
+
+# ============================================================
 # 生成 Packages.json
 # ============================================================
 
 def generate_packages_json(entries):
+
+    output_entries = []
+
+    for entry in entries:
+
+        output_entries.append(
+            clean_entry_for_json(entry)
+        )
 
     with open(
         GENERATED_JSON,
@@ -874,7 +1127,7 @@ def generate_packages_json(entries):
     ) as f:
 
         json.dump(
-            entries,
+            output_entries,
             f,
             ensure_ascii=False,
             indent=2
@@ -966,6 +1219,21 @@ def main():
         DEB_DIR.mkdir(
             parents=True,
             exist_ok=True
+        )
+
+    # --------------------------------------------------------
+    # 更新日志目录
+    # --------------------------------------------------------
+
+    if not CHANGELOG_DIR.exists():
+
+        CHANGELOG_DIR.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        print(
+            "📁 已创建 changelogs/"
         )
 
     # --------------------------------------------------------
