@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "debs/**"
+      - "changelogs/**"
       - "generate_packages.py"
       - ".github/workflows/update-packages.yml"
   workflow_dispatch:
@@ -13,36 +14,84 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-packages-main
+  cancel-in-progress: false
+
 jobs:
   update-packages:
     runs-on: ubuntu-latest
 
     steps:
+      # =====================================================
+      # 1. Checkout 最新 main
+      # =====================================================
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
+      # =====================================================
+      # 2. 设置 Python
+      # =====================================================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
+      # =====================================================
+      # 3. 安装 dpkg
+      # =====================================================
       - name: Install dpkg
         run: |
           sudo apt-get update
           sudo apt-get install -y dpkg
 
+      # =====================================================
+      # 4. 生成 Packages
+      # =====================================================
       - name: Generate Packages
         run: |
           python3 generate_packages.py
 
+      # =====================================================
+      # 5. 显示生成结果
+      # =====================================================
+      - name: Check generated files
+        run: |
+          echo "================================"
+          echo "Generated files:"
+          echo "================================"
+
+          ls -lh \
+            Packages \
+            Packages.gz \
+            Packages.bz2 \
+            Packages.json \
+            Release
+
+          echo
+          echo "================================"
+          echo "Git status:"
+          echo "================================"
+
+          git status --short
+
+      # =====================================================
+      # 6. 提交并推送
+      # =====================================================
       - name: Commit and Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add Packages Packages.gz Packages.bz2 Packages.json Release
+          git add \
+            Packages \
+            Packages.gz \
+            Packages.bz2 \
+            Packages.json \
+            Release
 
           if git diff --cached --quiet; then
             echo "No Packages changes."
@@ -51,4 +100,11 @@ jobs:
 
           git commit -m "Update Packages"
 
+          # 获取最新 main
+          git fetch origin main
+
+          # 确保当前提交基于最新 main
+          git rebase origin/main
+
+          # 推送
           git push origin HEAD:main
