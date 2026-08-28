@@ -588,6 +588,20 @@ Filename: debs/com.wkk.keyboardx_1.0-6_iphoneos-arm64e.deb
 Size: 62204
 SHA256: 03ed401ae51f042ae8278eeb57cfda9fd95fac20ede4dd63b6fe5c103d9581ef
 
+Package: com.wkk.onestepx
+Name: OneStepX
+Version: 1.0-1
+Architecture: iphoneos-arm64e
+Description: 为 iPhone 操作按钮提供独立的短按与长按动作。
+Maintainer: wkk
+Author: wkk
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader, firmware (>= 17.0)
+Installed-Size: 392
+Filename: debs/com.wkk.onestepx_1.0-1_iphoneos-arm64e.deb
+Size: 101024
+SHA256: 506203bcf2b034add260c8c682ed2f238e6efdefa5e9eec59700149896aa6e33
+
 Package: com.wkk.wechatx
 Name: WeChatX
 Version: 2.1-8
