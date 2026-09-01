@@ -1,3064 +1,434 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
->
-
-<title>ilan 插件源生成器</title>
-
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-
-    margin:0;
-
-    padding:18px;
-
-    background:#f5f5f7;
-
-    color:#111;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
-}
-
-.container{
-
-    max-width:760px;
-
-    margin:auto;
-}
-
-h1{
-
-    text-align:center;
-
-    margin:8px 0 5px;
-}
-
-.subtitle{
-
-    text-align:center;
-
-    color:#777;
-
-    margin-bottom:20px;
-}
-
-.card{
-
-    background:#fff;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    margin-bottom:15px;
-
-    box-shadow:
-        0 4px 18px rgba(0,0,0,.06);
-}
-
-label{
-
-    display:block;
-
-    font-weight:600;
-
-    margin-bottom:7px;
-}
-
-input,
-textarea,
-select{
-
-    width:100%;
-
-    border:1px solid #ddd;
-
-    border-radius:12px;
-
-    padding:13px;
-
-    font-size:15px;
-
-    outline:none;
-
-    background:#fff;
-}
-
-textarea{
-
-    min-height:110px;
-
-    resize:vertical;
-}
-
-button{
-
-    width:100%;
-
-    border:0;
-
-    border-radius:13px;
-
-    padding:14px;
-
-    margin-top:10px;
-
-    background:#007aff;
-
-    color:#fff;
-
-    font-size:16px;
-
-    font-weight:600;
-}
-
-button.secondary{
-
-    background:#e9e9ed;
-
-    color:#111;
-}
-
-button.danger{
-
-    background:#ff3b30;
-}
-
-button:disabled{
-
-    opacity:.45;
-}
-
-.fileButton{
-
-    display:block;
-
-    text-align:center;
-
-    padding:15px;
-
-    border-radius:13px;
-
-    background:#007aff;
-
-    color:#fff;
-
-    font-weight:600;
-}
-
-.fileButton input{
-
-    display:none;
-}
-
-.plugin{
-
-    border:1px solid #e5e5e5;
-
-    border-radius:17px;
-
-    padding:15px;
-
-    margin-top:15px;
-}
-
-.pluginTop{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-
-    margin-bottom:15px;
-}
-
-.icon{
-
-    width:62px;
-
-    height:62px;
-
-    border-radius:15px;
-
-    object-fit:cover;
-
-    background:#eee;
-
-    flex:none;
-}
-
-.pluginTitle{
-
-    font-size:18px;
-
-    font-weight:700;
-}
-
-.small{
-
-    font-size:13px;
-
-    color:#777;
-
-    margin-top:4px;
-}
-
-.field{
-
-    margin-top:12px;
-}
-
-.auto{
-
-    color:#007aff;
-
-    font-size:12px;
-
-    margin-top:5px;
-}
-
-.status{
-
-    background:#111;
-
-    color:#00ff55;
-
-    border-radius:12px;
-
-    padding:13px;
-
-    font-family:monospace;
-
-    font-size:12px;
-
-    white-space:pre-wrap;
-
-    max-height:300px;
-
-    overflow:auto;
-}
-
-.badge{
-
-    display:inline-block;
-
-    padding:4px 8px;
-
-    border-radius:8px;
-
-    background:#eee;
-
-    font-size:11px;
-
-    margin-top:5px;
-}
-
-@media(max-width:520px){
-
-    body{
-        padding:12px;
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f5f7">
+    <title>ilan 插件源</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Helvetica Neue",
+                Arial,
+                sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+        .container {
+            width: min(920px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 50px 0 70px;
+        }
+        .hero {
+            text-align: center;
+            padding: 35px 20px 45px;
+        }
+        .icon {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 20px;
+            border-radius: 22px;
+            background: #1d1d1f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            margin: 0;
+            font-size: 38px;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            margin-top: 10px;
+            color: #6e6e73;
+            font-size: 17px;
+        }
+        .source-box {
+            margin: 0 auto 28px;
+            padding: 18px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        }
+        .source-title {
+            font-size: 14px;
+            color: #6e6e73;
+            margin-bottom: 9px;
+        }
+        .source-row {
+            display: flex;
+            gap: 10px;
+        }
+        .source-url {
+            flex: 1;
+            min-width: 0;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #f5f5f7;
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            user-select: all;
+        }
+        button {
+            border: 0;
+            border-radius: 12px;
+            padding: 0 18px;
+            background: #1d1d1f;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:active {
+            transform: scale(0.97);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .stat {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+        }
+        .stat-number {
+            font-size: 27px;
+            font-weight: 700;
+        }
+        .stat-label {
+            margin-top: 5px;
+            color: #6e6e73;
+            font-size: 13px;
+        }
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+        }
+        .card h2 {
+            margin: 0 0 16px;
+            font-size: 21px;
+        }
+        .card p {
+            margin: 8px 0;
+            line-height: 1.7;
+            color: #6e6e73;
+            font-size: 14px;
+        }
+        .steps {
+            display: grid;
+            gap: 12px;
+        }
+        .step {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+        }
+        .step-number {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            border-radius: 50%;
+            background: #1d1d1f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .step-text {
+            padding-top: 3px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .plugins {
+            display: grid;
+            gap: 10px;
+        }
+        .plugin {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            background: #f5f5f7;
+        }
+        .plugin-name {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .plugin-id {
+            margin-top: 4px;
+            color: #86868b;
+            font-size: 12px;
+        }
+        .plugin-version {
+            color: #6e6e73;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .loading,
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #6e6e73;
+            font-size: 14px;
+        }
+        footer {
+            text-align: center;
+            padding-top: 15px;
+            color: #86868b;
+            font-size: 12px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: min(100% - 22px, 920px);
+                padding-top: 25px;
+            }
+            .hero {
+                padding-top: 25px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .source-row {
+                flex-direction: column;
+            }
+            button {
+                height: 44px;
+            }
+            .plugin {
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
-
-
 <body>
-
-
 <div class="container">
-
-
-<h1>
-    ilan 插件源生成器
-</h1>
-
-
-<div class="subtitle">
-    RootHide 插件源 · 手机批量管理
+    <section class="hero">
+        <div class="icon">i</div>
+        <h1>ilan 插件源</h1>
+        <div class="subtitle">
+            RootHide / Rootless 越狱插件源
+        </div>
+    </section>
+    <section class="source-box">
+        <div class="source-title">源地址</div>
+        <div class="source-row">
+            <div class="source-url" id="sourceUrl">
+                https://ilan621.github.io/
+            </div>
+            <button onclick="copySource()">
+                复制
+            </button>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number" id="pluginCount">-</div>
+            <div class="stat-label">插件版本</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">RootHide</div>
+            <div class="stat-label">支持环境</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">APT</div>
+            <div class="stat-label">软件源</div>
+        </div>
+    </section>
+    <section class="card">
+        <h2>添加源</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    复制上面的源地址
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    打开 Sileo / RootHide
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    添加软件源并刷新
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="card">
+        <h2>插件</h2>
+        <div id="plugins" class="plugins">
+            <div class="loading">
+                正在读取插件列表……
+            </div>
+        </div>
+    </section>
+    <section class="card">
+        <h2>关于</h2>
+        <p>
+            ilan 插件源提供 RootHide / Rootless 越狱环境下的插件。
+        </p>
+        <p>
+            插件版本及信息会根据软件源索引自动更新。
+        </p>
+    </section>
+    <footer>
+        © 2026 ilan 插件源
+    </footer>
 </div>
-
-
-<!-- =====================================================
-     GitHub 设置
-===================================================== -->
-
-<div class="card">
-
-<h3>
-    ⚙️ GitHub 设置
-</h3>
-
-
-<label>
-    GitHub 用户名
-</label>
-
-<input
-    id="githubUser"
-    placeholder="例如 ilan621"
->
-
-
-<div class="field">
-
-<label>
-    仓库名称
-</label>
-
-<input
-    id="githubRepo"
-    placeholder="例如 Repo"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-    分支
-</label>
-
-<input
-    id="githubBranch"
-    value="main"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-    GitHub Token
-</label>
-
-<input
-    id="token"
-    type="password"
-    placeholder="第一次输入即可"
->
-
-</div>
-
-
-<button onclick="saveSettings()">
-    保存设置
-</button>
-
-
-<button
-    class="secondary"
-    onclick="clearToken()"
->
-    清除本机 Token
-</button>
-
-
-<div
-    id="tokenStatus"
-    class="small"
-></div>
-
-
-</div>
-
-
-<!-- =====================================================
-     上传
-===================================================== -->
-
-<div class="card">
-
-<h3>
-    📦 批量添加插件
-</h3>
-
-
-<label class="fileButton">
-
-    选择 DEB + PNG
-
-    <input
-        id="files"
-        type="file"
-        multiple
-        accept=".deb,.png,.jpg,.jpeg"
-    >
-
-</label>
-
-
-<div
-    id="fileInfo"
-    class="small"
->
-    尚未选择文件
-</div>
-
-
-<button onclick="analyzeFiles()">
-    🔍 自动读取插件信息
-</button>
-
-
-</div>
-
-
-<!-- =====================================================
-     插件列表
-===================================================== -->
-
-<div class="card">
-
-<h3>
-    ✏️ 编辑插件信息
-</h3>
-
-
-<div id="plugins">
-    暂无插件
-</div>
-
-
-<button
-    id="uploadButton"
-    disabled
-    onclick="uploadAll()"
->
-    🚀 批量上传到 GitHub
-</button>
-
-
-</div>
-
-
-<!-- =====================================================
-     日志
-===================================================== -->
-
-<div class="card">
-
-<h3>
-    📜 操作日志
-</h3>
-
-
-<div
-    id="status"
-    class="status"
->
-等待操作...
-</div>
-
-
-</div>
-
-
-</div>
-
-
 <script>
-
-
-/* =====================================================
-   全局变量
-===================================================== */
-
-let selectedFiles = [];
-
-let plugins = [];
-
-
-/* =====================================================
-   初始化
-===================================================== */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        loadSettings();
-
-    }
-);
-
-
-/* =====================================================
-   日志
-===================================================== */
-
-function log(text){
-
-    const box =
-        document.getElementById(
-            "status"
-        );
-
-    box.innerText +=
-        "\n" + text;
-
-    box.scrollTop =
-        box.scrollHeight;
-}
-
-
-/* =====================================================
-   GitHub 设置
-===================================================== */
-
-function loadSettings(){
-
-    const token =
-        localStorage.getItem(
-            "ilan_token"
-        );
-
-    const user =
-        localStorage.getItem(
-            "ilan_user"
-        );
-
-    const repo =
-        localStorage.getItem(
-            "ilan_repo"
-        );
-
-    const branch =
-        localStorage.getItem(
-            "ilan_branch"
-        );
-
-
-    if(token){
-
-        document.getElementById(
-            "token"
-        ).value = token;
-
-        document.getElementById(
-            "tokenStatus"
-        ).innerText =
-            "✅ Token 已保存，本机下次无需重新输入";
-    }
-
-
-    if(user){
-
-        document.getElementById(
-            "githubUser"
-        ).value = user;
-    }
-
-
-    if(repo){
-
-        document.getElementById(
-            "githubRepo"
-        ).value = repo;
-    }
-
-
-    if(branch){
-
-        document.getElementById(
-            "githubBranch"
-        ).value = branch;
-    }
-
-}
-
-
-function saveSettings(){
-
-    const token =
-        document.getElementById(
-            "token"
-        ).value.trim();
-
-    const user =
-        document.getElementById(
-            "githubUser"
-        ).value.trim();
-
-    const repo =
-        document.getElementById(
-            "githubRepo"
-        ).value.trim();
-
-    const branch =
-        document.getElementById(
-            "githubBranch"
-        ).value.trim()
-        || "main";
-
-
-    if(!token){
-
-        alert(
-            "请输入 GitHub Token"
-        );
-
-        return;
-    }
-
-
-    if(!user || !repo){
-
-        alert(
-            "请填写 GitHub 用户名和仓库名称"
-        );
-
-        return;
-    }
-
-
-    localStorage.setItem(
-        "ilan_token",
-        token
-    );
-
-    localStorage.setItem(
-        "ilan_user",
-        user
-    );
-
-    localStorage.setItem(
-        "ilan_repo",
-        repo
-    );
-
-    localStorage.setItem(
-        "ilan_branch",
-        branch
-    );
-
-
-    document.getElementById(
-        "tokenStatus"
-    ).innerText =
-        "✅ 设置已保存";
-
-
-    log(
-        "GitHub 设置保存成功"
-    );
-
-}
-
-
-function clearToken(){
-
-    localStorage.removeItem(
-        "ilan_token"
-    );
-
-
-    document.getElementById(
-        "token"
-    ).value = "";
-
-
-    document.getElementById(
-        "tokenStatus"
-    ).innerText =
-        "Token 已清除";
-
-
-    log(
-        "已清除本机 Token"
-    );
-
-}
-
-
-/* =====================================================
-   文件选择
-===================================================== */
-
-document
-.getElementById("files")
-.addEventListener(
-    "change",
-    function(e){
-
-        selectedFiles =
-            Array.from(
-                e.target.files
-            );
-
-
-        const debs =
-            selectedFiles.filter(
-                f =>
-                    /\.deb$/i.test(
-                        f.name
-                    )
-            );
-
-
-        const images =
-            selectedFiles.filter(
-                f =>
-                    /\.(png|jpg|jpeg)$/i.test(
-                        f.name
-                    )
-            );
-
-
-        document.getElementById(
-            "fileInfo"
-        ).innerText =
-
-            `总文件：${selectedFiles.length}\n` +
-
-            `DEB：${debs.length}\n` +
-
-            `图片：${images.length}`;
-
-    }
-);
-
-
-/* =====================================================
-   DEB AR
-===================================================== */
-
-function parseAR(buffer){
-
-    const bytes =
-        new Uint8Array(
-            buffer
-        );
-
-
-    const magic =
-        new TextDecoder(
-            "ascii"
-        ).decode(
-            bytes.slice(
-                0,
-                8
-            )
-        );
-
-
-    if(
-        magic !== "!<arch>\n"
-    ){
-
-        throw new Error(
-            "不是有效的 DEB 文件"
-        );
-    }
-
-
-    let offset = 8;
-
-    const files = [];
-
-
-    while(
-        offset + 60 <=
-        bytes.length
-    ){
-
-        const header =
-            bytes.slice(
-                offset,
-                offset + 60
-            );
-
-
-        const name =
-            new TextDecoder(
-                "ascii"
-            ).decode(
-                header.slice(
-                    0,
-                    16
-                )
-            ).trim();
-
-
-        const sizeText =
-            new TextDecoder(
-                "ascii"
-            ).decode(
-                header.slice(
-                    48,
-                    58
-                )
-            ).trim();
-
-
-        const size =
-            parseInt(
-                sizeText,
-                10
-            );
-
-
-        if(
-            !Number.isFinite(size)
-            ||
-            size < 0
-        ){
-
-            break;
-        }
-
-
-        const start =
-            offset + 60;
-
-        const end =
-            start + size;
-
-
-        if(
-            end >
-            bytes.length
-        ){
-
-            break;
-        }
-
-
-        files.push({
-
-            name,
-
-            data:
-                bytes.slice(
-                    start,
-                    end
-                )
-
+const SOURCE_URL = "https://ilan621.github.io/";
+function copySource() {
+    navigator.clipboard.writeText(SOURCE_URL)
+        .then(() => {
+            const button = document.querySelector("button");
+            const oldText = button.innerText;
+            button.innerText = "已复制";
+            setTimeout(() => {
+                button.innerText = oldText;
+            }, 1500);
+        })
+        .catch(() => {
+            alert(SOURCE_URL);
         });
-
-
-        offset = end;
-
-
-        if(
-            offset % 2 !== 0
-        ){
-
-            offset++;
-        }
-
-    }
-
-
-    return files;
-
 }
-
-
-/* =====================================================
-   gzip
-===================================================== */
-
-async function gzipDecode(bytes){
-
-    if(
-        typeof DecompressionStream ===
-        "undefined"
-    ){
-
-        throw new Error(
-            "当前浏览器不支持 gzip 解压"
-        );
-    }
-
-
-    const stream =
-        new Blob([
-            bytes
-        ])
-        .stream()
-        .pipeThrough(
-            new DecompressionStream(
-                "gzip"
-            )
-        );
-
-
-    return new Uint8Array(
-        await new Response(
-            stream
-        ).arrayBuffer()
-    );
-
-}
-
-
-/* =====================================================
-   TAR
-===================================================== */
-
-function parseTar(bytes){
-
-    const files = [];
-
-    let offset = 0;
-
-
-    while(
-        offset + 512 <=
-        bytes.length
-    ){
-
-        const header =
-            bytes.slice(
-                offset,
-                offset + 512
-            );
-
-
-        let empty = true;
-
-
-        for(
-            let i = 0;
-            i < 512;
-            i++
-        ){
-
-            if(
-                header[i] !== 0
-            ){
-
-                empty = false;
-
-                break;
-            }
-
-        }
-
-
-        if(empty){
-
-            break;
-        }
-
-
-        const name =
-            new TextDecoder(
-                "utf-8"
-            )
-            .decode(
-                header.slice(
-                    0,
-                    100
-                )
-            )
-            .replace(
-                /\0/g,
-                ""
-            )
-            .trim();
-
-
-        const sizeText =
-            new TextDecoder(
-                "ascii"
-            )
-            .decode(
-                header.slice(
-                    124,
-                    136
-                )
-            )
-            .replace(
-                /\0/g,
-                ""
-            )
-            .trim();
-
-
-        const size =
-            parseInt(
-                sizeText,
-                8
-            ) || 0;
-
-
-        const type =
-            header[156];
-
-
-        const start =
-            offset + 512;
-
-
-        const end =
-            start + size;
-
-
-        if(
-            end >
-            bytes.length
-        ){
-
-            break;
-        }
-
-
-        if(
-            type === 0 ||
-            type === 48
-        ){
-
-            files.push({
-
-                name,
-
-                data:
-                    bytes.slice(
-                        start,
-                        end
-                    )
-
-            });
-
-        }
-
-
-        offset =
-            start +
-            Math.ceil(
-                size / 512
-            ) *
-            512;
-
-    }
-
-
-    return files;
-
-}
-
-
-/* =====================================================
-   提取 control
-===================================================== */
-
-async function extractControl(
-    debFile
-){
-
-    const buffer =
-        await debFile.arrayBuffer();
-
-
-    const ar =
-        parseAR(buffer);
-
-
-    const control =
-        ar.find(
-            x =>
-                /^control\.tar/i.test(
-                    x.name
-                )
-        );
-
-
-    if(!control){
-
-        throw new Error(
-            "DEB 中没有找到 control.tar.*"
-        );
-    }
-
-
-    let tarBytes =
-        control.data;
-
-
-    const name =
-        control.name.toLowerCase();
-
-
-    if(
-        name.includes(".gz")
-    ){
-
-        tarBytes =
-            await gzipDecode(
-                tarBytes
-            );
-    }
-
-
-    if(
-        name.includes(".xz")
-    ){
-
-        throw new Error(
-            "检测到 control.tar.xz，当前浏览器暂不支持 XZ"
-        );
-    }
-
-
-    if(
-        name.includes(".zst")
-    ){
-
-        throw new Error(
-            "检测到 control.tar.zst，当前浏览器暂不支持 Zstandard"
-        );
-    }
-
-
-    const files =
-        parseTar(
-            tarBytes
-        );
-
-
-    const controlFile =
-        files.find(
-            x =>
-                x.name === "control" ||
-                x.name === "./control" ||
-                x.name.endsWith(
-                    "/control"
-                )
-        );
-
-
-    if(!controlFile){
-
-        throw new Error(
-            "control.tar 中没有找到 control 文件"
-        );
-    }
-
-
-    return new TextDecoder(
-        "utf-8"
-    ).decode(
-        controlFile.data
-    );
-
-}
-
-
-/* =====================================================
-   Debian control
-===================================================== */
-
-function parseControl(text){
-
-    const result = {};
-
-    const lines =
-        text
-        .replace(
-            /\r/g,
-            ""
-        )
-        .split("\n");
-
-
-    let current = null;
-
-
-    for(
-        const line of lines
-    ){
-
-        if(
-            !line.trim()
-        ){
-
-            continue;
-        }
-
-
-        if(
-            /^[ \t]/.test(line)
-            &&
-            current
-        ){
-
-            result[current] +=
-                "\n" +
-                line.trim();
-
-            continue;
-        }
-
-
-        const index =
-            line.indexOf(":");
-
-
-        if(
-            index === -1
-        ){
-
-            continue;
-        }
-
-
-        const key =
-            line.slice(
-                0,
-                index
-            ).trim();
-
-
-        const value =
-            line.slice(
-                index + 1
-            ).trim();
-
-
-        current = key;
-
-
-        result[key] =
-            value;
-
-    }
-
-
-    return result;
-
-}
-
-
-/* =====================================================
-   描述清理
-===================================================== */
-
-function cleanDescription(
-    text
-){
-
-    return text
-
-        .replace(
-            /\n[ \t]*\.[ \t]*/g,
-            "\n"
-        )
-
-        .replace(
-            /\n[ \t]+/g,
-            "\n"
-        )
-
-        .trim();
-
-}
-
-
-/* =====================================================
-   分析 DEB
-===================================================== */
-
-async function analyzeDeb(
-    file
-){
-
-    const text =
-        await extractControl(
-            file
-        );
-
-
-    const control =
-        parseControl(
-            text
-        );
-
-
-    return {
-
-        package:
-            control.Package || "",
-
-        name:
-            control.Name ||
-            control.Package ||
-            "",
-
-        version:
-            control.Version || "",
-
-        author:
-            control.Author ||
-            control.Maintainer ||
-            "",
-
-        description:
-            cleanDescription(
-                control.Description ||
-                ""
-            ),
-
-        architecture:
-            control.Architecture ||
-            ""
-
-    };
-
-}
-
-
-/* =====================================================
-   查找图标
-===================================================== */
-
-function findImage(
-    deb
-){
-
-    const base =
-        deb.name
-        .replace(
-            /\.deb$/i,
-            ""
-        )
-        .toLowerCase();
-
-
-    return selectedFiles.find(
-        file => {
-
-            const name =
-                file.name
-                .replace(
-                    /\.(png|jpg|jpeg)$/i,
-                    ""
-                )
-                .toLowerCase();
-
-
-            return name === base;
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   分析文件
-===================================================== */
-
-async function analyzeFiles(){
-
-    const debs =
-        selectedFiles.filter(
-            f =>
-                /\.deb$/i.test(
-                    f.name
-                )
-        );
-
-
-    if(!debs.length){
-
-        alert(
-            "请选择 DEB 文件"
-        );
-
-        return;
-    }
-
-
-    plugins = [];
-
-
-    document.getElementById(
-        "plugins"
-    ).innerHTML =
-        "正在读取插件信息...";
-
-
-    log(
-        `开始解析 ${debs.length} 个 DEB`
-    );
-
-
-    for(
-        const deb of debs
-    ){
-
-        try{
-
-            log(
-                `\n读取：${deb.name}`
-            );
-
-
-            const info =
-                await analyzeDeb(
-                    deb
-                );
-
-
-            const image =
-                findImage(
-                    deb
-                );
-
-
-            plugins.push({
-
-                deb,
-
-                image,
-
-                original:{
-
-                    package:
-                        info.package,
-
-                    name:
-                        info.name,
-
-                    version:
-                        info.version,
-
-                    author:
-                        info.author,
-
-                    description:
-                        info.description,
-
-                    architecture:
-                        info.architecture
-
-                },
-
-                package:
-                    info.package,
-
-                name:
-                    info.name,
-
-                version:
-                    info.version,
-
-                author:
-                    info.author,
-
-                description:
-                    info.description,
-
-                architecture:
-                    info.architecture
-
-            });
-
-
-            log(
-                `✅ ${info.name} ${info.version}`
-            );
-
-
-        }catch(error){
-
-            log(
-                `❌ ${deb.name}\n` +
-                error.message
-            );
-
-        }
-
-    }
-
-
-    renderPlugins();
-
-
-    document.getElementById(
-        "uploadButton"
-    ).disabled =
-        plugins.length === 0;
-
-
-    log(
-        `\n解析完成：${plugins.length} 个插件`
-    );
-
-}
-
-
-/* =====================================================
-   HTML 安全
-===================================================== */
-
-function escapeHTML(
-    value
-){
-
-    return String(
-        value || ""
-    )
-
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-
-/* =====================================================
-   插件界面
-===================================================== */
-
-function renderPlugins(){
-
-    const box =
-        document.getElementById(
-            "plugins"
-        );
-
-
-    box.innerHTML = "";
-
-
-    plugins.forEach(
-        (plugin,index) => {
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "plugin";
-
-
-            let iconHTML =
-                `<div class="icon"></div>`;
-
-
-            if(plugin.image){
-
-                const url =
-                    URL.createObjectURL(
-                        plugin.image
-                    );
-
-
-                iconHTML =
-                    `<img
-                        id="icon-${index}"
-                        class="icon"
-                        src="${url}"
-                    >`;
-
-            }
-
-
-            div.innerHTML = `
-
-                <div class="pluginTop">
-
-                    ${iconHTML}
-
-                    <div>
-
-                        <div class="pluginTitle">
-
-                            ${escapeHTML(
-                                plugin.name
-                            )}
-
-                        </div>
-
-                        <div class="small">
-
-                            ${escapeHTML(
-                                plugin.package
-                            )}
-
-                        </div>
-
-                        <div class="badge">
-
-                            ${escapeHTML(
-                                plugin.version
-                            )}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        插件名称
-                    </label>
-
-                    <input
-                        id="name-${index}"
-                        value="${escapeHTML(
-                            plugin.name
-                        )}"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Package ID
-                    </label>
-
-                    <input
-                        id="package-${index}"
-                        value="${escapeHTML(
-                            plugin.package
-                        )}"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        版本
-                    </label>
-
-                    <input
-                        id="version-${index}"
-                        value="${escapeHTML(
-                            plugin.version
-                        )}"
-                    >
-
-                    <div class="auto">
-                        使用 DEB 原始版本最安全
-                    </div>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        作者 / Maintainer
-                    </label>
-
-                    <input
-                        id="author-${index}"
-                        value="${escapeHTML(
-                            plugin.author
-                        )}"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        架构
-                    </label>
-
-                    <input
-                        id="arch-${index}"
-                        value="${escapeHTML(
-                            plugin.architecture
-                        )}"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        📝 插件描述
-                    </label>
-
-                    <textarea
-                        id="description-${index}"
-                    >${escapeHTML(
-                        plugin.description
-                    )}</textarea>
-
-                    <div class="auto">
-                        可以直接修改成中文介绍
-                    </div>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        🖼️ 更换插件图标
-                    </label>
-
-                    <input
-                        type="file"
-                        accept=".png,.jpg,.jpeg"
-                        onchange="changeIcon(
-                            ${index},
-                            this
-                        )"
-                    >
-
-                </div>
-
-
-                <button
-                    class="secondary"
-                    onclick="restorePlugin(
-                        ${index}
-                    )"
-                >
-
-                    ↩️ 恢复 DEB 原始信息
-
-                </button>
-
-            `;
-
-
-            box.appendChild(
-                div
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   更换图标
-===================================================== */
-
-function changeIcon(
-    index,
-    input
-){
-
-    const file =
-        input.files[0];
-
-
-    if(!file){
-
-        return;
-    }
-
-
-    plugins[index].image =
-        file;
-
-
-    const oldIcon =
-        document.getElementById(
-            `icon-${index}`
-        );
-
-
-    const url =
-        URL.createObjectURL(
-            file
-        );
-
-
-    if(oldIcon){
-
-        oldIcon.src =
-            url;
-
-    }else{
-
-        renderPlugins();
-
-    }
-
-
-    log(
-        `🖼️ 已更换 ${
-            plugins[index].name
-        } 图标`
-    );
-
-}
-
-
-/* =====================================================
-   恢复
-===================================================== */
-
-function restorePlugin(
-    index
-){
-
-    const original =
-        plugins[index].original;
-
-
-    plugins[index].package =
-        original.package;
-
-
-    plugins[index].name =
-        original.name;
-
-
-    plugins[index].version =
-        original.version;
-
-
-    plugins[index].author =
-        original.author;
-
-
-    plugins[index].description =
-        original.description;
-
-
-    plugins[index].architecture =
-        original.architecture;
-
-
-    renderPlugins();
-
-
-    log(
-        `↩️ 已恢复 ${
-            original.name
-        } 原始信息`
-    );
-
-}
-
-
-/* =====================================================
-   获取编辑内容
-===================================================== */
-
-function collectEditedData(){
-
-    plugins.forEach(
-        (plugin,index) => {
-
-            plugin.name =
-                document.getElementById(
-                    `name-${index}`
-                ).value.trim();
-
-
-            plugin.package =
-                document.getElementById(
-                    `package-${index}`
-                ).value.trim();
-
-
-            plugin.version =
-                document.getElementById(
-                    `version-${index}`
-                ).value.trim();
-
-
-            plugin.author =
-                document.getElementById(
-                    `author-${index}`
-                ).value.trim();
-
-
-            plugin.architecture =
-                document.getElementById(
-                    `arch-${index}`
-                ).value.trim();
-
-
-            plugin.description =
-                document.getElementById(
-                    `description-${index}`
-                ).value.trim();
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   GitHub API
-===================================================== */
-
-async function githubRequest(
-    url,
-    options = {}
-){
-
-    const token =
-        localStorage.getItem(
-            "ilan_token"
-        );
-
-
-    if(!token){
-
-        throw new Error(
-            "没有找到 GitHub Token"
-        );
-    }
-
-
-    const headers = {
-
-        "Authorization":
-            `Bearer ${token}`,
-
-        "Accept":
-            "application/vnd.github+json",
-
-        "X-GitHub-Api-Version":
-            "2022-11-28"
-
-    };
-
-
-    if(options.body){
-
-        headers[
-            "Content-Type"
-        ] =
-            "application/json";
-
-    }
-
-
-    const response =
-        await fetch(
-            url,
+/*
+ * 读取 Packages
+ *
+ * 不使用网页上传功能。
+ * 首页只负责展示源中的插件。
+ */
+async function loadPackages() {
+    const container = document.getElementById("plugins");
+    try {
+        const response = await fetch(
+            "Packages?ts=" + Date.now(),
             {
-                ...options,
-                headers
+                cache: "no-store"
             }
         );
-
-
-    if(!response.ok){
-
-        let message = "";
-
-
-        try{
-
-            const data =
-                await response.json();
-
-
-            message =
-                data.message ||
-                JSON.stringify(
-                    data
-                );
-
-        }catch(e){
-
-            message =
-                await response.text();
-
+        if (!response.ok) {
+            throw new Error("Packages HTTP " + response.status);
         }
-
-
-        throw new Error(
-            `GitHub ${response.status}: ` +
-            message
-        );
-
-    }
-
-
-    return response.json();
-
-}
-
-
-/* =====================================================
-   Base64
-===================================================== */
-
-function arrayBufferToBase64(
-    buffer
-){
-
-    const bytes =
-        new Uint8Array(
-            buffer
-        );
-
-
-    let binary = "";
-
-
-    const chunk =
-        0x8000;
-
-
-    for(
-        let i = 0;
-        i < bytes.length;
-        i += chunk
-    ){
-
-        binary +=
-            String.fromCharCode(
-                ...bytes.slice(
-                    i,
-                    i + chunk
-                )
-            );
-
-    }
-
-
-    return btoa(
-        binary
-    );
-
-}
-
-
-/* =====================================================
-   Base64 → UTF8
-===================================================== */
-
-function base64ToUtf8(
-    base64
-){
-
-    const binary =
-        atob(
-            base64.replace(
-                /\n/g,
-                ""
-            )
-        );
-
-
-    const bytes =
-        Uint8Array.from(
-            binary,
-            c =>
-                c.charCodeAt(0)
-        );
-
-
-    return new TextDecoder(
-        "utf-8"
-    ).decode(
-        bytes
-    );
-
-}
-
-
-/* =====================================================
-   上传文件
-===================================================== */
-
-async function uploadFile(
-    path,
-    file,
-    message
-){
-
-    const user =
-        document.getElementById(
-            "githubUser"
-        ).value.trim();
-
-
-    const repo =
-        document.getElementById(
-            "githubRepo"
-        ).value.trim();
-
-
-    const branch =
-        document.getElementById(
-            "githubBranch"
-        ).value.trim()
-        || "main";
-
-
-    if(!user || !repo){
-
-        throw new Error(
-            "GitHub 用户名或仓库名称为空"
-        );
-
-    }
-
-
-    const url =
-        `https://api.github.com/repos/` +
-        `${user}/${repo}/contents/${path}`;
-
-
-    const content =
-        arrayBufferToBase64(
-            await file.arrayBuffer()
-        );
-
-
-    let sha = null;
-
-
-    /*
-     * 只检查完全相同的路径
-     *
-     * ~48 与 ~50 是两个不同文件
-     */
-
-    try{
-
-        const old =
-            await githubRequest(
-                `${url}?ref=` +
-                encodeURIComponent(
-                    branch
-                )
-            );
-
-
-        if(
-            old &&
-            old.sha
-        ){
-
-            sha =
-                old.sha;
-
+        const text = await response.text();
+        const entries = text
+            .split(/\n\s*\n/)
+            .map(x => x.trim())
+            .filter(Boolean);
+        document.getElementById("pluginCount").innerText =
+            entries.length;
+        if (!entries.length) {
+            container.innerHTML =
+                '<div class="empty">暂无插件</div>';
+            return;
         }
-
-    }catch(error){
-
         /*
-         * 404 = 文件不存在
-         * 正常创建
+         * 每个 Package 只显示一个最新版本，
+         * 避免首页出现几十个历史版本。
          */
-
-        if(
-            !String(
-                error.message
-            ).includes(
-                "GitHub 404"
-            )
-        ){
-
-            throw error;
-
-        }
-
-    }
-
-
-    const body = {
-
-        message,
-
-        content,
-
-        branch
-
-    };
-
-
-    /*
-     * 文件已经存在
-     * 才使用 sha 更新
-     */
-
-    if(sha){
-
-        body.sha =
-            sha;
-
-    }
-
-
-    return githubRequest(
-        url,
-        {
-
-            method:"PUT",
-
-            body:
-                JSON.stringify(
-                    body
-                )
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   上传 JSON
-===================================================== */
-
-async function uploadJSON(
-    path,
-    data,
-    message
-){
-
-    const user =
-        document.getElementById(
-            "githubUser"
-        ).value.trim();
-
-
-    const repo =
-        document.getElementById(
-            "githubRepo"
-        ).value.trim();
-
-
-    const branch =
-        document.getElementById(
-            "githubBranch"
-        ).value.trim()
-        || "main";
-
-
-    const url =
-        `https://api.github.com/repos/` +
-        `${user}/${repo}/contents/${path}`;
-
-
-    const bytes =
-        new TextEncoder().encode(
-            JSON.stringify(
-                data,
-                null,
-                2
-            )
-        );
-
-
-    const content =
-        arrayBufferToBase64(
-            bytes
-        );
-
-
-    let sha = null;
-
-
-    try{
-
-        const old =
-            await githubRequest(
-                `${url}?ref=` +
-                encodeURIComponent(
-                    branch
-                )
-            );
-
-
-        if(
-            old &&
-            old.sha
-        ){
-
-            sha =
-                old.sha;
-
-        }
-
-    }catch(error){
-
-        if(
-            !String(
-                error.message
-            ).includes(
-                "GitHub 404"
-            )
-        ){
-
-            throw error;
-
-        }
-
-    }
-
-
-    const body = {
-
-        message,
-
-        content,
-
-        branch
-
-    };
-
-
-    if(sha){
-
-        body.sha =
-            sha;
-
-    }
-
-
-    return githubRequest(
-        url,
-        {
-
-            method:"PUT",
-
-            body:
-                JSON.stringify(
-                    body
-                )
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   读取 GitHub 原有 packages.json
-===================================================== */
-
-async function loadExistingPackages(){
-
-    const user =
-        document.getElementById(
-            "githubUser"
-        ).value.trim();
-
-
-    const repo =
-        document.getElementById(
-            "githubRepo"
-        ).value.trim();
-
-
-    const branch =
-        document.getElementById(
-            "githubBranch"
-        ).value.trim()
-        || "main";
-
-
-    const url =
-        `https://api.github.com/repos/` +
-        `${user}/${repo}/contents/packages.json?ref=` +
-        encodeURIComponent(
-            branch
-        );
-
-
-    try{
-
-        const old =
-            await githubRequest(
-                url
-            );
-
-
-        if(
-            !old ||
-            !old.content
-        ){
-
-            return [];
-
-        }
-
-
-        const text =
-            base64ToUtf8(
-                old.content
-            );
-
-
-        const data =
-            JSON.parse(
-                text
-            );
-
-
-        if(
-            data &&
-            Array.isArray(
-                data.packages
-            )
-        ){
-
-            return data.packages;
-
-        }
-
-
-        return [];
-
-
-    }catch(error){
-
-        /*
-         * packages.json 不存在
-         * 第一次上传正常
-         */
-
-        if(
-            String(
-                error.message
-            ).includes(
-                "GitHub 404"
-            )
-        ){
-
-            return [];
-
-        }
-
-
-        throw error;
-
-    }
-
-}
-
-
-/* =====================================================
-   合并 metadata
-   ⭐ Package + Version
-===================================================== */
-
-function mergePackages(
-    oldPackages,
-    newPackages
-){
-
-    const merged = [
-        ...oldPackages
-    ];
-
-
-    for(
-        const newItem of newPackages
-    ){
-
-        const newPackage =
-            newItem.package || "";
-
-
-        const newVersion =
-            newItem.version || "";
-
-
-        const index =
-            merged.findIndex(
-                item => {
-
-                    const oldPackage =
-                        item.package ||
-                        item.Package ||
-                        "";
-
-
-                    const oldVersion =
-                        item.version ||
-                        item.Version ||
-                        "";
-
-
-                    return (
-                        oldPackage ===
-                        newPackage
-                    )
-                    &&
-                    (
-                        oldVersion ===
-                        newVersion
-                    );
-
-                }
-            );
-
-
-        if(index >= 0){
-
-            log(
-                `♻️ 更新 metadata：` +
-                `${newPackage} ` +
-                `${newVersion}`
-            );
-
-
-            merged[index] =
-                newItem;
-
-        }else{
-
-            log(
-                `➕ 添加版本：` +
-                `${newPackage} ` +
-                `${newVersion}`
-            );
-
-
-            merged.push(
-                newItem
-            );
-
-        }
-
-    }
-
-
-    return merged;
-
-}
-
-
-/* =====================================================
-   批量上传
-===================================================== */
-
-async function uploadAll(){
-
-    if(!plugins.length){
-
-        alert(
-            "没有插件"
-        );
-
-        return;
-
-    }
-
-
-    collectEditedData();
-
-
-    const token =
-        localStorage.getItem(
-            "ilan_token"
-        );
-
-
-    if(!token){
-
-        alert(
-            "没有找到 GitHub Token，请先保存设置"
-        );
-
-        return;
-
-    }
-
-
-    const user =
-        document.getElementById(
-            "githubUser"
-        ).value.trim();
-
-
-    const repo =
-        document.getElementById(
-            "githubRepo"
-        ).value.trim();
-
-
-    const branch =
-        document.getElementById(
-            "githubBranch"
-        ).value.trim()
-        || "main";
-
-
-    if(!user || !repo){
-
-        alert(
-            "请填写 GitHub 用户名和仓库名称"
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * 检查插件
-     */
-
-    for(
-        const plugin of plugins
-    ){
-
-        if(!plugin.package){
-
-            alert(
-                "有插件没有 Package ID"
-            );
-
-            return;
-
-        }
-
-
-        if(!plugin.name){
-
-            alert(
-                "有插件没有插件名称"
-            );
-
-            return;
-
-        }
-
-
-        if(!plugin.version){
-
-            alert(
-                `插件 ${plugin.name} 没有版本号`
-            );
-
-            return;
-
-        }
-
-
-        if(!plugin.architecture){
-
-            alert(
-                `插件 ${plugin.name} 没有架构`
-            );
-
-            return;
-
-        }
-
-    }
-
-
-    const button =
-        document.getElementById(
-            "uploadButton"
-        );
-
-
-    button.disabled = true;
-
-
-    log(
-        "\n================================"
-    );
-
-
-    log(
-        "🚀 开始上传"
-    );
-
-
-    log(
-        "================================"
-    );
-
-
-    const packages = [];
-
-
-    try{
-
-        /*
-         * ==========================================
-         * 上传每一个插件
-         * ==========================================
-         */
-
-        for(
-            let i = 0;
-            i < plugins.length;
-            i++
-        ){
-
-            const plugin =
-                plugins[i];
-
-
-            log(
-                `\n[${i + 1}/${plugins.length}] ` +
-                `${plugin.name}`
-            );
-
-
-            log(
-                `Package: ${plugin.package}`
-            );
-
-
-            log(
-                `Version: ${plugin.version}`
-            );
-
-
-            log(
-                `Architecture: ${plugin.architecture}`
-            );
-
-
-            /*
-             * DEB
-             */
-
-            const debPath =
-                `debs/${plugin.deb.name}`;
-
-
-            log(
-                `📦 上传 DEB：${debPath}`
-            );
-
-
-            await uploadFile(
-                debPath,
-                plugin.deb,
-                `Add ${plugin.name} ${plugin.version}`
-            );
-
-
-            log(
-                "✅ DEB 上传成功"
-            );
-
-
-            /*
-             * 图标
-             */
-
-            let iconPath = "";
-
-
-            if(plugin.image){
-
-                iconPath =
-                    `icons/${plugin.image.name}`;
-
-
-                log(
-                    `🖼️ 上传图标：${iconPath}`
-                );
-
-
-                await uploadFile(
-                    iconPath,
-                    plugin.image,
-                    `Update icon ${plugin.name}`
-                );
-
-
-                log(
-                    "✅ 图标上传成功"
-                );
-
-            }
-
-
-            /*
-             * metadata
-             */
-
-            packages.push({
-
-                package:
-                    plugin.package,
-
-                name:
-                    plugin.name,
-
-                version:
-                    plugin.version,
-
-                author:
-                    plugin.author,
-
-                description:
-                    plugin.description,
-
-                architecture:
-                    plugin.architecture,
-
-                filename:
-                    debPath,
-
-                icon:
-                    iconPath
-
+        const packages = {};
+        for (const entry of entries) {
+            const data = {};
+            entry.split("\n").forEach(line => {
+                const index = line.indexOf(":");
+                if (index === -1) return;
+                const key =
+                    line.substring(0, index).trim();
+                const value =
+                    line.substring(index + 1).trim();
+                data[key] = value;
             });
-
-
-            log(
-                `✅ ${plugin.name} ${plugin.version} 完成`
-            );
-
+            if (!data.Package) continue;
+            if (!packages[data.Package]) {
+                packages[data.Package] = data;
+            } else {
+                /*
+                 * 简单按版本字符串比较。
+                 * 真正的版本选择仍由 Sileo / APT 负责。
+                 */
+                if (
+                    String(data.Version || "") >
+                    String(packages[data.Package].Version || "")
+                ) {
+                    packages[data.Package] = data;
+                }
+            }
         }
-
-
-        /*
-         * ==========================================
-         * 读取旧 packages.json
-         * ==========================================
-         */
-
-        log(
-            "\n📖 读取旧 packages.json..."
-        );
-
-
-        const oldPackages =
-            await loadExistingPackages();
-
-
-        log(
-            `旧 metadata：${oldPackages.length} 个版本`
-        );
-
-
-        /*
-         * ==========================================
-         * 合并
-         * ==========================================
-         */
-
-        const merged =
-            mergePackages(
-                oldPackages,
-                packages
-            );
-
-
-        /*
-         * ==========================================
-         * 生成新的 packages.json
-         * ==========================================
-         */
-
-        const data = {
-
-            source:{
-
-                name:
-                    "ilan",
-
-                description:
-                    "ilan RootHide 插件源",
-
-                website:
-                    "https://ilan621.github.io/Repo/"
-
-            },
-
-            packages:
-                merged
-
-        };
-
-
-        log(
-            "\n📄 更新 packages.json..."
-        );
-
-
-        await uploadJSON(
-            "packages.json",
-            data,
-            "Update packages.json"
-        );
-
-
-        log(
-            "✅ packages.json 更新成功"
-        );
-
-
-        /*
-         * ==========================================
-         * 完成
-         * ==========================================
-         */
-
-        log(
-            "\n================================"
-        );
-
-
-        log(
-            "🎉 全部上传成功！"
-        );
-
-
-        log(
-            `本次上传：${packages.length} 个`
-        );
-
-
-        log(
-            `源内版本：${merged.length} 个`
-        );
-
-
-        log(
-            "================================"
-        );
-
-
-        log(
-            "\n⏳ GitHub Actions 将自动生成："
-        );
-
-
-        log(
-            "Packages"
-        );
-
-
-        log(
-            "Packages.gz"
-        );
-
-
-        log(
-            "Packages.bz2"
-        );
-
-
-        log(
-            "Packages.json"
-        );
-
-
-        log(
-            "Release"
-        );
-
-
-        alert(
-            "🎉 插件上传成功！\n\n" +
-            "请等待 GitHub Actions 自动更新源。"
-        );
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        log(
-            "\n================================"
-        );
-
-
-        log(
-            "❌ 上传失败"
-        );
-
-
-        log(
-            "================================"
-        );
-
-
-        log(
-            error.message
-        );
-
-
-        log(
-            "\n请根据上面的 GitHub 错误判断问题。"
-        );
-
-
-        alert(
-            "❌ 上传失败！\n\n" +
-            error.message
-        );
-
-
-    }finally{
-
-        button.disabled =
-            false;
-
+        const list =
+            Object.values(packages);
+        document.getElementById("pluginCount").innerText =
+            list.length;
+        container.innerHTML = "";
+        list.forEach(plugin => {
+            const item =
+                document.createElement("div");
+            item.className = "plugin";
+            item.innerHTML = `
+                <div>
+                    <div class="plugin-name">
+                        ${escapeHtml(
+                            plugin.Name ||
+                            plugin.Package
+                        )}
+                    </div>
+                    <div class="plugin-id">
+                        ${escapeHtml(plugin.Package)}
+                    </div>
+                </div>
+                <div class="plugin-version">
+                    ${escapeHtml(
+                        plugin.Version || ""
+                    )}
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    } catch (error) {
+        console.error(error);
+        container.innerHTML =
+            '<div class="empty">暂时无法读取插件列表</div>';
+        document.getElementById("pluginCount")
+            .innerText = "-";
     }
-
 }
-
-
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+loadPackages();
 </script>
-
-
 </body>
-
 </html>
