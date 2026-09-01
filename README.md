@@ -4,7 +4,7 @@
 
 ## 源地址
  
-https://ilan621.github.io/Repo/
+https://ilan621.github.io/
 
 ## 说明
 
