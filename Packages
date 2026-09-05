@@ -276,6 +276,21 @@ SHA256: 371982b8adc93bf9432e3f61e651eb377b7c5a7582b6e42a628da54d9d94df99
 
 Package: com.iosdump.shellx
 Name: SHELLX
+Version: 2.9.0
+Architecture: iphoneos-arm64e
+Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
+Maintainer: iosdump
+Author: iosdump
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader, com.opa334.ccsupport
+Conflicts: com.jontelang.snapper3, byg.iosios.net.snapper3, com.jontelang.snapper, com.jontelang.snapper2.packix, xyz.cypwn.snapperfr33
+Installed-Size: 10984
+Filename: debs/com.iosdump.shellx_2.9.0_iphoneos-arm64e.deb
+Size: 3691676
+SHA256: 6ee858fe77a6777ed5660e65f935c99445a1139a1f74e0c821b935cae7d26cfc
+
+Package: com.iosdump.shellx
+Name: SHELLX
 Version: 2.7.0
 Architecture: iphoneos-arm64e
 Description: 支持录屏/截图套壳，水印以及区域截图、长截图等，兼容iOS14-17所有越狱
@@ -773,4 +788,18 @@ Provides: con.twigalaxy
 Filename: debs/con.twigalaxy_1.1.4_iphoneos-arm64e.deb
 Size: 435868
 SHA256: d7a62e8322c84334b07365b9bf8505fca4ae271167b8c99c01b9ba64baa4af75
+
+Package: jp.dcsyhi.culprit
+Name: Culprit
+Version: 1.0.2
+Architecture: iphoneos-arm64e
+Description: Crash reports grouped by process. Colored presentation informed by slog (Ethan Arbuckle, https://github.com/EthanArbuckle/slog).
+Maintainer: Dcsyhi
+Author: Dcsyhi
+Section: Utilities
+Depends: firmware (>=15.0)
+Installed-Size: 500
+Filename: debs/jp.dcsyhi.culprit_1.0.2_iphoneos-arm64e.deb
+Size: 180010
+SHA256: f2e669c98e93233a7bea5bf2a7d0053a4b2bcb2983efa22ff47e8088068d0cc3
 
